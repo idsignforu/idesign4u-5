@@ -36,8 +36,8 @@ export const NAV_LINKS = [
 // ============================================================
 export const WEBSITE_IMPACT = {
   withWebsite: [
-    { icon: 'Globe', title: '24/7 Online Presence', desc: 'Your business sells, books, and converts even while you sleep.' },
-    { icon: 'BadgeCheck', title: 'Instant Credibility', desc: 'Customers trust businesses with professional websites 3.2x more.' },
+    { icon: 'Globe', title: 'Always Accessible Online', desc: 'Your business sells, books, and converts even while you sleep.' },
+    { icon: 'BadgeCheck', title: 'Build Customer Trust', desc: 'A professional website helps build customer trust and credibility.' },
     { icon: 'Search', title: 'Found on Google', desc: 'Get discovered by customers actively searching for what you offer.' },
     { icon: 'TrendingUp', title: 'Scalable Growth', desc: 'Sell to anyone, anywhere \u2014 not just your local 5 km radius.' },
     { icon: 'IndianRupee', title: 'Zero Commission', desc: 'Keep 100% of your earnings \u2014 no Justdial / Zomato cuts.' },
@@ -95,13 +95,13 @@ export const ABOUT_PROMISES = [
   },
   {
     icon: 'Rocket',
-    title: '48-Hour Launch Promise',
-    desc: 'Most websites delivered in 48 hours flat. Same quality, half the wait of every other agency.',
+    title: 'Fast Project Delivery',
+    desc: 'Most business websites are delivered quickly depending on project scope and content readiness.',
   },
 ];
 
 // ============================================================
-// SEO RANKING PROCESS \u2014 how we get you to Google #1
+// SEO PROCESS — improve local search visibility
 // ============================================================
 export const SEO_STEPS = [
   { icon: 'Search', title: 'Keyword Research', desc: 'We find the exact phrases your customers type in Google. Long-tail, high-intent, low-competition \u2014 the gold.' },
@@ -137,11 +137,11 @@ export const PRICING = [
     id: 'starter', name: 'Starter Website', tagline: 'Ideal for small businesses & startups',
     price: 5999, strike: 8999, badge: null, cta: 'Get Started',
     features: [
-      '5 Pages Website (100% Responsive)', 'Free Domain (.com / .in / .co.in)',
-      'Free Cloud Hosting (1 Year)', 'Free SSL Certificate', 'Free Business Email (5 IDs)',
+      '5 Pages Website (100% Responsive)', 'Domain Included (.com / .in / .co.in)',
+      '1 Year Cloud Hosting Included', 'SSL Certificate Included', 'Business Email Setup Assistance',
       'Free Logo Design', 'Mobile Responsive Premium UI', 'WhatsApp & Call Button',
       'Contact / Inquiry Form', 'Basic SEO Setup (15+ Keywords)', 'Google Map & Business Listing',
-      'Social Media Integration', '48-Hour Delivery', '24/7 Phone / Chat Support',
+      'Social Media Integration', 'Fast Delivery', 'Phone / Chat Support',
     ],
   },
   {
@@ -149,11 +149,11 @@ export const PRICING = [
     price: 7999, strike: 11999, badge: 'Most Popular', cta: 'Get Started',
     features: [
       '7–10 Pages Website (100% Responsive)', 'Free Premium Domain (.com / .in)',
-      'Free Cloud Hosting (1 Year)', 'Free SSL Certificate', 'Free Business Email (Unlimited)',
+      '1 Year Cloud Hosting Included', 'SSL Certificate Included', 'Business Email Setup Assistance',
       'Free Logo + Brand Kit', 'Image Gallery & Portfolio Section', 'Advanced SEO (25–40 Keywords)',
       'Google Analytics & Search Console', 'Blog / News Module', 'Admin Panel (Full Access)',
       'WhatsApp Chat Integration', 'Cloudflare Security + Firewall', '48-Hour Auto Backup',
-      '48-Hour Delivery', '24/7 Priority Support',
+      'Fast Delivery', 'Priority Support',
     ],
   },
   {
@@ -161,13 +161,13 @@ export const PRICING = [
     price: 11999, strike: 16999, badge: 'Best Value', cta: 'Get Started',
     features: [
       '10+ Pages Website (100% Responsive)', 'Unlimited Products Listing',
-      'Free Domain (.com / .in / .co.in)', 'Free Cloud Hosting (1 Year)',
+      'Domain Included (.com / .in / .co.in)', '1 Year Cloud Hosting Included',
       'Full Cart, Checkout & Order Tracking', 'Razorpay & UPI Payment Gateway',
       'Customer Login Dashboard', 'Order & Inventory Management',
       'Coupons & Discount Engine', 'Multi-Image Product Galleries',
       'Advanced SEO + Schema Markup', 'Email & SMS Notifications',
       'Admin Panel (Full Access)', 'SSL + Cloudflare Security',
-      '48-Hour Delivery', '24/7 Priority Support',
+      'Fast Delivery', 'Priority Support',
     ],
   },
 ];
@@ -180,7 +180,7 @@ export const CUSTOM_QUOTE_FEATURES = [
   { id: 'seo', label: 'SEO Optimization', icon: 'Search', options: ['Basic (Free)', 'Advanced – 25 keywords', 'Premium – 40+ keywords + Schema'] },
   { id: 'marketing', label: 'Digital Marketing Add-on', icon: 'Megaphone', options: ['Not now', 'Google Ads Setup', 'Social Media Setup', 'Both'] },
   { id: 'cms', label: 'Need Admin Panel / CMS?', icon: 'Settings', options: ['Yes — self editable', 'No — static site'] },
-  { id: 'timeline', label: 'Timeline', icon: 'Clock', options: ['ASAP / 48 hours', '1 week', '2–4 weeks', 'Flexible'] },
+  { id: 'timeline', label: 'Timeline', icon: 'Clock', options: ['ASAP , '1 week', '2–4 weeks', 'Flexible'] },
   { id: 'budget', label: 'Budget Range', icon: 'Wallet', options: ['Under ₹10k', '₹10k–₹25k', '₹25k–₹50k', '₹50k–₹1L', '₹1L+'] },
 ];
 
@@ -199,7 +199,7 @@ export const WHY_US = [
   { icon: 'Trophy', title: 'Award-Winning Team', desc: 'Recognized designers and developers delivering industry-leading experiences.' },
   { icon: 'Globe', title: 'Global Clientele', desc: 'Trusted by businesses across 30+ countries worldwide.' },
   { icon: 'TrendingUp', title: 'Result-Oriented', desc: 'Every solution built to drive traffic, leads, and measurable ROI.' },
-  { icon: 'Zap', title: 'Fast Turnaround', desc: 'Agile process — most websites delivered in just 48 hours.' },
+  { icon: 'Zap', title: 'Fast Turnaround', desc: 'Agile process — Most business websites are delivered quickly depending on project scope and content readiness.' },
   { icon: 'ShieldCheck', title: 'Secure & Scalable', desc: 'Built with security, performance, and scalability at the core.' },
   { icon: 'BrainCircuit', title: 'Strategy First', desc: 'We understand your business before we design or code anything.' },
   { icon: 'Headphones', title: 'Dedicated Support', desc: 'Real humans, real support — before, during, and after delivery.' },
@@ -250,7 +250,7 @@ export const FAQS = [
   { q: 'Will my website be mobile responsive?', a: 'Absolutely. Every website we build works flawlessly across mobile, tablet, and desktop devices. Mobile-first design is our standard.' },
   { q: 'Do you create SEO-friendly websites?', a: 'Yes. We follow SEO-friendly structure, clean code, optimized layouts, schema markup, and proper on-page setup so your website ranks better on Google.' },
   { q: 'Can you redesign my existing website?', a: 'Yes, we can revamp outdated websites with a fresh modern design, better performance, mobile responsiveness, and improved conversion flow.' },
-  { q: 'Do you provide post-launch support?', a: 'Yes. We provide 24/7 phone, chat & email support for updates, bug fixes, and guidance so your website continues to run smoothly.' },
+  { q: 'Do you provide post-launch support?', a: 'Yes. We provide phone, chat & email support for updates, bug fixes, and guidance so your website continues to run smoothly.' },
   { q: 'What do you need from me to get started?', a: 'Just your business details, logo (if any), basic content, and goals. If you do not have everything ready, our team will guide you through every step.' },
   { q: 'Can I contact you directly on WhatsApp?', a: 'Yes! Tap any WhatsApp button on the site to chat with us instantly for quick quotes, demos, and consultation.' },
   { q: 'Do you offer payment plans?', a: 'Yes — we accept 50% advance and 50% on delivery for one-time plans. UPI, cards, and bank transfer all accepted via Razorpay.' },
@@ -258,10 +258,10 @@ export const FAQS = [
 ];
 
 export const STATS = [
-  { value: 500, suffix: '+', label: 'Websites Launched' },
+  { value: 100, suffix: '+', label: 'Websites Launched' },
   { value: 4.9, suffix: '★', label: 'Google Rating', decimals: 1 },
-  { value: 48, suffix: 'hr', label: 'Avg. Delivery' },
-  { value: 30, suffix: '+', label: 'Countries Served' },
+  { value: 48hr, suffix: '1 week', label: 'Avg. Delivery' },
+  { value: Serving, suffix: 'global', label: 'Countries' },
 ];
 
 export const BUSINESS_TYPES = [
@@ -376,7 +376,7 @@ const BLOG_IMAGES = [
 ];
 
 export const BLOG_POSTS = [
-  { id: 1,  category: 'Affordable Websites',      title: 'Cheap Website Design in India for Small Businesses',         desc: 'Affordable website design services for startups and small businesses without compromising quality.' },
+  { id: 1,  category: 'Affordable Websites',      title: 'Cheap Website Design in Hyderabad, India for Small Businesses',         desc: 'Affordable website design services for startups and small businesses without compromising quality.' },
   { id: 2,  category: 'Small Business Websites',  title: 'Why Every Small Business Needs a Website in 2026',           desc: 'A professional website helps small businesses grow faster, build trust, and reach more customers online.' },
   { id: 3,  category: 'Startup Websites',         title: 'How to Build a Low-Cost Website in India',                   desc: 'A practical guide to launching a professional website without spending too much. Domain, hosting, design — all covered.' },
   { id: 4,  category: 'Website Design Tips',      title: '10 Web Design Trends That Convert in 2026',                  desc: 'From glass morphism to micro-animations — discover the design patterns that boost conversions and user trust.' },
