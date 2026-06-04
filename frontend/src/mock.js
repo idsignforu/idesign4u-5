@@ -261,8 +261,7 @@ export const STATS = [
   { value: 100, suffix: '+', label: 'Websites Launched' },
   { value: 4.9, suffix: '★', label: 'Google Rating', decimals: 1 },
     { value: 48, suffix: 'hr', label: 'Avg. Delivery' },
-  { value: Serving, suffix: 'global', label: 'Countries' },
-];
+ ];
 
 export const BUSINESS_TYPES = [
   { id: 'salon', label: 'Salon / Beauty', icon: 'Scissors' },
