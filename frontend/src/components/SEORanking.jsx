@@ -13,10 +13,10 @@ export default function SEORanking() {
         <div className="flex flex-col items-center text-center mb-12">
           <span className="inline-flex items-center gap-2 bg-[#1E1135] border border-[#A855F7]/30 text-[#C084FC] rounded-full px-4 py-1.5 text-xs font-bold tracking-wider uppercase">
             <L.TrendingUp className="w-3.5 h-3.5" />
-            Rank #1 on Google
+            SEO Optimized Website Design
           </span>
           <h2 className="section-title mt-4 max-w-3xl glow-text-soft">
-            How We Get You to <span className="glow-text">Google’s First Page</span>
+            SEO-Friendly Website Design <span className="glow-text">That Helps You Rank on Google</span>
           </h2>
           <p className="mt-4 text-[#C4B5FD] max-w-2xl">
             A pretty website is useless if nobody finds it. Every plan we ship is engineered for ranking —
@@ -67,7 +67,7 @@ export default function SEORanking() {
           {[
             { v: '3x', l: 'Avg. organic traffic growth in 6 months' },
             { v: 'Top 10', l: 'For 25–40 target keywords (Business plan)' },
-            { v: '₹0', l: 'Recurring SEO fees — set up once, ranks forever' },
+            { v: '₹0', l: 'Built with SEO best practices from day one' },
           ].map((m) => (
             <div key={m.l} className="bg-card-dark rounded-2xl p-5 text-center">
               <div className="text-3xl md:text-4xl font-black glow-text">{m.v}</div>
