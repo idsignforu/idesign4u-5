@@ -41,8 +41,8 @@ export default function Hero() {
           <div className="col-span-2 md:col-span-1 lg:col-span-7">
             <div className="inline-flex items-center gap-1.5 md:gap-2 bg-[#1E1135]/80 backdrop-blur border border-[#A855F7]/30 rounded-full px-2.5 md:px-3.5 py-1 md:py-1.5 text-[10px] md:text-xs font-semibold text-[#E9D5FF] mb-4 md:mb-6 shadow-[0_8px_24px_rgba(168,85,247,0.25)]">
               <Sparkles className="w-3 h-3 md:w-3.5 md:h-3.5 text-[#C084FC]" />
-              <span className="hidden sm:inline">Premium Web Design Studio • 5★ Rated • 500+ Sites Delivered</span>
-              <span className="sm:hidden">5★ Studio • 500+ Sites</span>
+              <span className="hidden sm:inline">Premium Web Design Studio • 5★ Rated • 100+ Sites Delivered</span>
+              <span className="sm:hidden">5 ★ Studio • 100+ Sites</span>
             </div>
 
             <h1 className="text-[1.5rem] sm:text-5xl lg:text-[4.25rem] xl:text-[4.75rem] font-extrabold leading-[1.05] tracking-tight glow-text-soft">
@@ -83,7 +83,7 @@ export default function Hero() {
                 </div>
                 <div className="leading-tight">
                   <div className="font-extrabold text-sm text-white">4.9 / 5</div>
-                  <div className="text-[10px] text-[#C4B5FD]">500+ Clients</div>
+                  <div className="text-[10px] text-[#C4B5FD]">100+ Clients</div>
                 </div>
               </div>
 
@@ -102,7 +102,9 @@ export default function Hero() {
           {/* Mobile-only: description + CTAs + trust strip (rendered after both grid items so they appear below the row) */}
           <div className="col-span-5 md:hidden">
             <p className="mt-2 text-sm text-[#C4B5FD] leading-relaxed">
-              High-converting, SEO-ready websites starting at just <span className="font-bold text-white">₹5,999</span>. Free domain, hosting, SSL & logo.
+             Website Design Company in Hyderabad offering business websites,
+ecommerce websites, Shopify stores and SEO-friendly web development services.
+Free domain, hosting, SSL and ongoing support.
             </p>
 
             <div className="mt-5 flex flex-wrap items-center gap-2">
@@ -199,7 +201,7 @@ function LaptopHero() {
         <div className="text-[8px] font-bold text-white border border-[#A855F7]/40 rounded-full px-2 py-1">Get Demo</div>
       </div>
       <div className="mt-2 grid grid-cols-3 gap-1">
-        {[{n:'500+',l:'Sites'},{n:'4.9★',l:'Rating'},{n:'48hr',l:'Delivery'}].map(s => (
+        {[{n:'100+',l:'Sites'},{n:'4.9★',l:'Rating'},{n:'48hr',l:'Delivery'}].map(s => (
           <div key={s.l} className="bg-[#1E1135]/60 border border-[#A855F7]/20 rounded p-1">
             <div className="text-[10px] font-black text-white">{s.n}</div>
             <div className="text-[6px] text-[#C4B5FD]">{s.l}</div>
@@ -243,7 +245,7 @@ function LaptopServices() {
         ))}
       </div>
       <div className="mt-2 grid grid-cols-2 gap-1.5">
-        {[{t:'Award Winning',d:'500+ projects'},{t:'Global Clients',d:'30+ countries'}].map(s => (
+        {[{t:'Award Winning',d:'100+ projects'},{t:'Global Clients',d:'30+ countries'}].map(s => (
           <div key={s.t} className="bg-[#1E1135]/60 border border-[#A855F7]/20 rounded-lg p-2">
             <div className="text-[9px] font-extrabold text-white">🏆 {s.t}</div>
             <div className="text-[7px] text-[#C4B5FD] mt-0.5">{s.d}</div>
