@@ -60,11 +60,10 @@ export const WEBSITE_IMPACT = {
 // ============================================================
 // ABOUT US data
 // ============================================================
-export const ABOUT_STATS = [
-  { value: 7, suffix: '+', label: 'Years Experience' },
-  { value: 500, suffix: '+', label: 'Brands Empowered' },
-  { value: 30, suffix: '+', label: 'Countries Served' },
-  { value: 24, suffix: '/7', label: 'Support Promise' },
+export const STATS = [
+  { value: 100, suffix: '+', label: 'Websites Launched' },
+  { value: 4.9, suffix: '★', label: 'Google Rating', decimals: 1 },
+  { value: 48, suffix: ' hrs', label: 'Avg. Delivery' },
 ];
 
 export const ABOUT_PROMISES = [
@@ -76,7 +75,7 @@ export const ABOUT_PROMISES = [
   {
     icon: 'CreditCard',
     title: 'Installment Payments',
-    desc: 'Tight on budget? We\u2019ve helped 100+ clients with flexible payment plans \u2014 split into 2 or 3 instalments. Talk to us.',
+    desc: 'Tight on budget? We\u2019ve helped clients with flexible payment plans \u2014 split into 2 or 3 instalments. Talk to us.',
   },
   {
     icon: 'ShieldCheck',
