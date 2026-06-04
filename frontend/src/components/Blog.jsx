@@ -225,7 +225,7 @@ export default function Blog() {
                 {openPost.desc}
               </p>
               <p className="mt-4 text-sm text-[#C4B5FD]/80 leading-relaxed">
-                We publish in-depth articles covering web design, SEO, online growth, and digital marketing — packed with actionable advice from our work on 500+ projects. Want this exact guide delivered to you, plus a free website audit?
+                We publish in-depth articles covering web design, SEO, online growth, and digital marketing — packed with actionable advice from our work on multiple projects. Want this exact guide delivered to you, plus a free website audit?
               </p>
               <a
                 href="#contact"
