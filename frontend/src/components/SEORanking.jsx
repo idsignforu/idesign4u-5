@@ -19,7 +19,7 @@ export default function SEORanking() {
             SEO-Friendly Website Design <span className="glow-text">That Helps You Rank on Google</span>
           </h2>
           <p className="mt-4 text-[#C4B5FD] max-w-2xl">
-            A pretty website is useless if nobody finds it. Every plan we ship is engineered for ranking —
+            A pretty website is useless if nobody finds it. Every website we build follows SEO best practices to improve visibility on search engines. —
             here’s the exact 10-point SEO playbook we apply to every project.
           </p>
 
@@ -65,8 +65,8 @@ export default function SEORanking() {
 
         <div className="mt-12 grid md:grid-cols-3 gap-4 max-w-4xl mx-auto">
           {[
-            { v: '3x', l: 'Avg. organic traffic growth in 6 months' },
-            { v: 'Top 10', l: 'For 25–40 target keywords (Business plan)' },
+            { v: 'Fast', l: 'Optimized for speed and performance' },
+            { v: 'SEO Ready', l: 'Structured to support long-term rankings' },
             { v: '₹0', l: 'Built with SEO best practices from day one' },
           ].map((m) => (
             <div key={m.l} className="bg-card-dark rounded-2xl p-5 text-center">
@@ -83,7 +83,7 @@ export default function SEORanking() {
             rel="noreferrer"
             className="inline-flex items-center gap-2 btn-gradient text-white font-bold rounded-full px-7 py-4"
           >
-            <L.Sparkles className="w-4 h-4" /> Audit My Google Ranking (Free)
+            <L.Sparkles className="w-4 h-4" /> Hi, I'd like a free SEO audit for my website.
           </a>
           <p className="mt-3 text-xs text-[#C4B5FD]/70">No commitment — we’ll send you a quick action plan on WhatsApp.</p>
         </div>
