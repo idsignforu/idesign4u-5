@@ -63,7 +63,7 @@ export const WEBSITE_IMPACT = {
 export const ABOUT_STATS = [
   { value: 100, suffix: '+', label: 'Websites Launched' },
   { value: 4.9, suffix: '★', label: 'Google Rating' },
-  { value: 30, suffix: '+', label: 'Countries Served' },
+  { value: 30, suffix: '+', label: 'Countries' },
   { value: 1, suffix: ' Week', label: 'Avg. Delivery' },
 ];
 export const ABOUT_PROMISES = [
