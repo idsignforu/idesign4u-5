@@ -104,7 +104,7 @@ export default function Hero() {
             <p className="mt-2 text-sm text-[#C4B5FD] leading-relaxed">
              Website Design Company in Hyderabad offering business websites,
 ecommerce websites, Shopify stores and SEO-friendly web development services.
-Free domain, hosting, SSL and ongoing support.
+Domain, hosting, SSL and ongoing support included.
             </p>
 
             <div className="mt-5 flex flex-wrap items-center gap-2">
@@ -118,9 +118,9 @@ Free domain, hosting, SSL and ongoing support.
 
             <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs">
               {[
-                { icon: CheckCircle2, t: '48 Hour Delivery' },
-                { icon: ShieldCheck, t: 'Free SSL & Hosting' },
-                { icon: Zap, t: 'SEO-Ready Code' },
+                { icon: CheckCircle2, t: 'Fast Delivery' },
+                { icon: ShieldCheck, t: 'SSL & Hosting Included' },
+                { icon: Zap, t: 'SEO-Friendly Structure' },
               ].map((f, i) => (
                 <div key={i} className="flex items-center gap-1.5 text-[#DDD6FE]">
                   <f.icon className="w-3.5 h-3.5 text-[#C084FC]" />
@@ -134,8 +134,8 @@ Free domain, hosting, SSL and ongoing support.
           <div className="hidden md:block lg:col-span-7 lg:col-start-1 lg:-mt-4">
             <p className="mt-6 text-base md:text-lg text-[#C4B5FD] max-w-xl leading-relaxed">
              Website Design Company in Hyderabad creating high-converting,
-SEO-ready websites for businesses, startups and ecommerce brands.
-Starting at <span className="font-bold text-white">₹5,999</span>. with free domain, hosting and SSL.
+SEO-friendly websites for businesses, startups and ecommerce brands.
+Starting at <span className="font-bold text-white">₹5,999</span>. with domain, hosting and SSL included.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -149,9 +149,9 @@ Starting at <span className="font-bold text-white">₹5,999</span>. with free do
 
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
               {[
-                { icon: CheckCircle2, t: '48 Hour Delivery' },
-                { icon: ShieldCheck, t: 'Free SSL & Hosting' },
-                { icon: Zap, t: 'SEO-Ready Code' },
+                { icon: CheckCircle2, t: 'Fast Delivery' },
+                { icon: ShieldCheck, t: 'SSL & Hosting Included' },
+                { icon: Zap, t: 'SEO-Friendly Structure' },
               ].map((f, i) => (
                 <div key={i} className="flex items-center gap-2 text-[#DDD6FE]">
                   <f.icon className="w-4 h-4 text-[#C084FC]" />
@@ -196,7 +196,7 @@ function LaptopHero() {
       <div className="text-[14px] font-extrabold leading-tight text-white mt-1">
         Launch Your <span className="text-[#C084FC]">Business Website</span> in 48 Hours
       </div>
-      <p className="text-[8px] text-[#C4B5FD] leading-snug">Premium SEO-ready websites starting ₹5,999 • Free domain, hosting & SSL.</p>
+      <p className="text-[8px] text-[#C4B5FD] leading-snug">Professional business websites starting ₹5,999 • Domain, hosting & SSL included.</p>
       <div className="flex gap-1.5 mt-1">
         <div className="btn-gradient text-[8px] font-bold text-white rounded-full px-2 py-1">View Pricing →</div>
         <div className="text-[8px] font-bold text-white border border-[#A855F7]/40 rounded-full px-2 py-1">Get Demo</div>
@@ -212,7 +212,7 @@ function LaptopHero() {
       <div className="mt-2 grid grid-cols-2 gap-1">
         <div className="bg-[#7C3AED]/15 border border-[#A855F7]/25 rounded-lg p-1.5">
           <Crown className="w-3 h-3 text-[#C084FC]" />
-          <div className="text-[8px] font-bold text-white mt-0.5">Free SSL</div>
+          <div className="text-[8px] font-bold text-white mt-0.5">SSL Included</div>
         </div>
         <div className="bg-[#7C3AED]/15 border border-[#A855F7]/25 rounded-lg p-1.5">
           <Zap className="w-3 h-3 text-[#C084FC]" />
@@ -259,7 +259,7 @@ function LaptopServices() {
 
 function LaptopPricing() {
   const plans = [
-    { name: 'Starter', price: '5,999', pop: false, f: ['5 Pages', 'Free SSL', '48hr'] },
+    { name: 'Starter', price: '5,999', pop: false, f: ['5 Pages', 'SSL Included', 'Fast Delivery'] },
     { name: 'Business', price: '7,999', pop: true,  f: ['7-10 Pages', 'Free Logo', 'CMS'] },
     { name: 'E-Com', price: '11,999', pop: false, f: ['Unlimited', 'Payments', 'Dashboard'] },
   ];
@@ -290,7 +290,7 @@ function LaptopPricing() {
       </div>
       <div className="mt-1.5 bg-[#1E1135]/60 border border-[#A855F7]/20 rounded p-2 text-center">
         <div className="text-[7px] text-[#C4B5FD]">All plans include</div>
-        <div className="text-[8px] font-bold text-white">Free Domain • Hosting • SSL • Logo</div>
+        <div className="text-[8px] font-bold text-white">Domain • Hosting • SSL • Logo Included</div>
       </div>
     </div>
   );
