@@ -126,7 +126,7 @@ export const SEO_PLACES = [
 ];
 
 export const PREMIUM_FEATURES = [
-  { title: 'Google Ads Setup', sub: 'Free with every plan', tag: '₹ FREE', icon: 'Megaphone' },
+  { title: 'Google Ads Setup', sub: 'included with every plan', tag: '₹ FREE', icon: 'Megaphone' },
   { title: 'Premium SEO Tools', sub: 'Rank higher on Google', tag: '₹ FREE', icon: 'TrendingUp' },
   { title: 'Firewall Security', sub: 'Protect your data', tag: '₹ FREE', icon: 'ShieldCheck' },
   { title: 'SSL Certificate', sub: 'Secure HTTPS site', tag: '₹ FREE', icon: 'Lock' },
@@ -139,7 +139,7 @@ export const PRICING = [
     features: [
       '5 Pages Website (100% Responsive)', 'Domain Included (.com / .in / .co.in)',
       '1 Year Cloud Hosting Included', 'SSL Certificate Included', 'Business Email Setup Assistance',
-      'Free Logo Design', 'Mobile Responsive Premium UI', 'WhatsApp & Call Button',
+      'Logo Design included', 'Mobile Responsive Premium UI', 'WhatsApp & Call Button',
       'Contact / Inquiry Form', 'Basic SEO Setup (15+ Keywords)', 'Google Map & Business Listing',
       'Social Media Integration', 'Fast Delivery', 'Phone / Chat Support',
     ],
@@ -148,11 +148,11 @@ export const PRICING = [
     id: 'business', name: 'Business Website', tagline: 'Best for growing brands & service businesses',
     price: 7999, strike: 11999, badge: 'Most Popular', cta: 'Get Started',
     features: [
-      '7–10 Pages Website (100% Responsive)', 'Free Premium Domain (.com / .in)',
+      '7–10 Pages Website (100% Responsive)', 'Domain included (.com / .in)',
       '1 Year Cloud Hosting Included', 'SSL Certificate Included', 'Business Email Setup Assistance',
-      'Free Logo + Brand Kit', 'Image Gallery & Portfolio Section', 'Advanced SEO (25–40 Keywords)',
+      'Logo + Brand Kit included', 'Image Gallery & Portfolio Section', 'Advanced SEO (25–40 Keywords)',
       'Google Analytics & Search Console', 'Blog / News Module', 'Admin Panel (Full Access)',
-      'WhatsApp Chat Integration', 'Cloudflare Security + Firewall', '48-Hour Auto Backup',
+      'WhatsApp Chat Integration', 'Cloudflare Security + Firewall', 'Automated Website Backup',
       'Fast Delivery', 'Priority Support',
     ],
   },
@@ -177,7 +177,7 @@ export const CUSTOM_QUOTE_FEATURES = [
   { id: 'pages', label: 'Number of Pages', icon: 'FileText', options: ['1–5', '5–10', '10–20', '20+'] },
   { id: 'type', label: 'Website Type', icon: 'Layout', options: ['Business / Service', 'Ecommerce / Online Store', 'Portfolio', 'Landing Page', 'Booking / Appointment', 'School / Institution', 'Restaurant / Food', 'Clinic / Healthcare', 'Real Estate', 'Other'] },
   { id: 'logo', label: 'Need Logo Design?', icon: 'Sparkles', options: ['Yes', 'No — I have logo'] },
-  { id: 'seo', label: 'SEO Optimization', icon: 'Search', options: ['Basic (Free)', 'Advanced – 25 keywords', 'Premium – 40+ keywords + Schema'] },
+  { id: 'seo', label: 'SEO Optimization', icon: 'Search', options: ['Basic ', 'Advanced – 25 keywords', 'Premium – 40+ keywords + Schema'] },
   { id: 'marketing', label: 'Digital Marketing Add-on', icon: 'Megaphone', options: ['Not now', 'Google Ads Setup', 'Social Media Setup', 'Both'] },
   { id: 'cms', label: 'Need Admin Panel / CMS?', icon: 'Settings', options: ['Yes — self editable', 'No — static site'] },
   { id: 'timeline', label: 'Timeline', icon: 'Clock', options: ['ASAP , '1 week', '2–4 weeks', 'Flexible'] },
@@ -236,7 +236,7 @@ export const PROCESS_STEPS = [
 ];
 
 export const TESTIMONIALS = [
-  { name: 'Rahul Sharma', role: 'Startup Founder, Hyderabad', initials: 'RS', text: 'iDesign4U delivered our website in just 48 hours and the quality blew us away. Their team was responsive, strategic, and truly focused on our growth.', rating: 5 },
+  { name: 'Rahul Sharma', role: 'Startup Founder, Hyderabad', initials: 'RS', text: 'iDesign4U delivered our website quickly and exceeded our expectations. Their team was responsive, strategic, and truly focused on our growth.', rating: 5 },
   { name: 'Anita Verma', role: 'Marketing Head, Mumbai', initials: 'AV', text: 'Professional team with deep technical expertise. Our leads increased within weeks of the website going live. Worth every rupee.', rating: 5 },
   { name: 'Michael Ross', role: 'Business Owner, UK', initials: 'MR', text: 'One of the best website development agencies we have worked with. Highly recommended for international quality at affordable price.', rating: 5 },
   { name: 'Arjun Patel', role: 'Ecommerce Brand, Surat', initials: 'AP', text: 'Their ecommerce setup helped us dominate local search results. Order management is seamless and support is top-notch.', rating: 5 },
@@ -246,7 +246,7 @@ export const TESTIMONIALS = [
 
 export const FAQS = [
   { q: 'How long does it take to build a website?', a: 'Most business websites are completed within 48 hours to 7 days, depending on number of pages, features, and content readiness. Ecommerce stores may take up to 2 weeks.' },
-  { q: 'Is domain and hosting included in your plans?', a: 'Yes — all plans include a free domain (.com / .in / .co.in) and free cloud hosting for the first year. Renewal applies yearly at standard rates.' },
+  { q: 'Is domain and hosting included in your plans?', a: 'Yes — all plans include a domain (.com / .in / .co.in) and cloud hosting included for the first year. Renewal applies yearly at standard rates.' },
   { q: 'Will my website be mobile responsive?', a: 'Absolutely. Every website we build works flawlessly across mobile, tablet, and desktop devices. Mobile-first design is our standard.' },
   { q: 'Do you create SEO-friendly websites?', a: 'Yes. We follow SEO-friendly structure, clean code, optimized layouts, schema markup, and proper on-page setup so your website ranks better on Google.' },
   { q: 'Can you redesign my existing website?', a: 'Yes, we can revamp outdated websites with a fresh modern design, better performance, mobile responsiveness, and improved conversion flow.' },
