@@ -1,0 +1,23 @@
+# iDesign4U — robots.txt
+# https://www.idesign4u.in/
+
+User-agent: *
+Allow: /
+
+# Block non-useful paths
+Disallow: /static/js/
+Disallow: /static/css/
+Disallow: /*.json$
+
+# Allow key bots full access
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: bingbot
+Allow: /
+
+# Sitemaps
+Sitemap: https://www.idesign4u.in/sitemap.xml

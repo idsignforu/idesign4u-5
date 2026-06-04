@@ -1,0 +1,95 @@
+.App {
+  min-height: 100vh;
+  background: #0A0118;
+  position: relative;
+  /* Removed overflow-x: hidden to allow sticky navbar to work properly */
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  opacity: 0.55;
+}
+
+.hero-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(124, 58, 237, 0.35) 0%, transparent 45%),
+    radial-gradient(circle at 80% 20%, rgba(192, 132, 252, 0.22) 0%, transparent 50%),
+    radial-gradient(circle at 50% 90%, rgba(168, 85, 247, 0.25) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+.glass {
+  background: rgba(30, 17, 53, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(192, 132, 252, 0.18);
+}
+
+.tech-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-width: 180px;
+  height: 150px;
+  background: linear-gradient(160deg, rgba(30, 17, 53, 0.7) 0%, rgba(20, 8, 42, 0.5) 100%);
+  border-radius: 18px;
+  border: 1px solid rgba(168, 85, 247, 0.18);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  padding: 12px;
+}
+.tech-tile:hover {
+  transform: translateY(-6px) scale(1.04);
+  box-shadow: 0 20px 40px rgba(168, 85, 247, 0.3);
+  border-color: rgba(192, 132, 252, 0.6);
+}
+
+.stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #C084FC;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #C084FC;
+}
+
+/* Tech logo box with fallback letter */
+.tech-logo-box {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgba(168, 85, 247, 0.08);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+.tech-logo-box img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
+}
+.tech-logo-box .letter {
+  position: absolute;
+  font-weight: 900;
+  font-size: 20px;
+  color: #C084FC;
+  display: none;
+}
+.tech-logo-box.fallback img { display: none; }
+.tech-logo-box.fallback .letter { display: block; }
