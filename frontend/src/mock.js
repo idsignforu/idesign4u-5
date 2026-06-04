@@ -60,12 +60,12 @@ export const WEBSITE_IMPACT = {
 // ============================================================
 // ABOUT US data
 // ============================================================
-export const STATS = [
+export const ABOUT_STATS = [
   { value: 100, suffix: '+', label: 'Websites Launched' },
-  { value: 4.9, suffix: '★', label: 'Google Rating', decimals: 1 },
-  { value: 48, suffix: ' hrs', label: 'Avg. Delivery' },
+  { value: 4.9, suffix: '★', label: 'Google Rating' },
+  { value: 30, suffix: '+', label: 'Countries Served' },
+  { value: 1, suffix: ' Week', label: 'Avg. Delivery' },
 ];
-
 export const ABOUT_PROMISES = [
   {
     icon: 'Wallet',
