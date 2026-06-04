@@ -41,7 +41,7 @@ export default function Hero() {
           <div className="col-span-2 md:col-span-1 lg:col-span-7">
             <div className="inline-flex items-center gap-1.5 md:gap-2 bg-[#1E1135]/80 backdrop-blur border border-[#A855F7]/30 rounded-full px-2.5 md:px-3.5 py-1 md:py-1.5 text-[10px] md:text-xs font-semibold text-[#E9D5FF] mb-4 md:mb-6 shadow-[0_8px_24px_rgba(168,85,247,0.25)]">
               <Sparkles className="w-3 h-3 md:w-3.5 md:h-3.5 text-[#C084FC]" />
-              <span className="hidden sm:inline">Premium Web Design Studio • 5★ Rated • 100+ Sites Delivered</span>
+              <span className="hidden sm:inline">Premium Web Design Studio • Fast Delivery • Ongoing Support</span>
               <span className="sm:hidden">5 ★ Studio • 100+ Sites</span>
             </div>
 
@@ -83,7 +83,7 @@ export default function Hero() {
                 </div>
                 <div className="leading-tight">
                   <div className="font-extrabold text-sm text-white">4.9 / 5</div>
-                  <div className="text-[10px] text-[#C4B5FD]">100+ Clients</div>
+                  <div className="text-[10px] text-[#C4B5FD]">Trusted by Businesses</div>
                 </div>
               </div>
 
@@ -133,8 +133,9 @@ Free domain, hosting, SSL and ongoing support.
           {/* Desktop / tablet only continuation of left column content */}
           <div className="hidden md:block lg:col-span-7 lg:col-start-1 lg:-mt-4">
             <p className="mt-6 text-base md:text-lg text-[#C4B5FD] max-w-xl leading-relaxed">
-              High-converting, SEO-ready websites starting at just <span className="font-bold text-white">₹5,999</span>.
-              Free domain, hosting, SSL & logo — with a 24/7 support team that actually picks up the phone.
+             Website Design Company in Hyderabad creating high-converting,
+SEO-ready websites for businesses, startups and ecommerce brands.
+Starting at <span className="font-bold text-white">₹5,999</span>. with free domain, hosting and SSL.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
