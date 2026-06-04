@@ -246,7 +246,7 @@ function LaptopServices() {
         ))}
       </div>
       <div className="mt-2 grid grid-cols-2 gap-1.5">
-        {[{t:'Award Winning',d:'100+ projects'},{t:'Global Clients',d:'30+ countries'}].map(s => (
+        {[{t:'Professional Solutions',d:'Business Websites'},{t:'Global Clients',d:'30+ countries'}].map(s => (
           <div key={s.t} className="bg-[#1E1135]/60 border border-[#A855F7]/20 rounded-lg p-2">
             <div className="text-[9px] font-extrabold text-white">🏆 {s.t}</div>
             <div className="text-[7px] text-[#C4B5FD] mt-0.5">{s.d}</div>
