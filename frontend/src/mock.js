@@ -180,7 +180,7 @@ export const CUSTOM_QUOTE_FEATURES = [
   { id: 'seo', label: 'SEO Optimization', icon: 'Search', options: ['Basic ', 'Advanced – 25 keywords', 'Premium – 40+ keywords + Schema'] },
   { id: 'marketing', label: 'Digital Marketing Add-on', icon: 'Megaphone', options: ['Not now', 'Google Ads Setup', 'Social Media Setup', 'Both'] },
   { id: 'cms', label: 'Need Admin Panel / CMS?', icon: 'Settings', options: ['Yes — self editable', 'No — static site'] },
-  { id: 'timeline', label: 'Timeline', icon: 'Clock', options: ['ASAP , '1 week', '2–4 weeks', 'Flexible'] },
+  { id: 'timeline', label: 'Timeline', icon: 'Clock', options: ['ASAP' , '1 week', '2–4 weeks', 'Flexible'] },
   { id: 'budget', label: 'Budget Range', icon: 'Wallet', options: ['Under ₹10k', '₹10k–₹25k', '₹25k–₹50k', '₹50k–₹1L', '₹1L+'] },
 ];
 
@@ -260,7 +260,7 @@ export const FAQS = [
 export const STATS = [
   { value: 100, suffix: '+', label: 'Websites Launched' },
   { value: 4.9, suffix: '★', label: 'Google Rating', decimals: 1 },
-  { value: 48hr, suffix: '1 week', label: 'Avg. Delivery' },
+    { value: 48, suffix: 'hr', label: 'Avg. Delivery' },
   { value: Serving, suffix: 'global', label: 'Countries' },
 ];
 
