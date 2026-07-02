@@ -16,7 +16,7 @@ export const BRAND = {
   location: 'Hyderabad, India',
   whatsappBase: 'https://wa.me/919281410305',
   // Update this URL to change site-wide logo
-  logo: 'https://customer-assets.emergentagent.com/job_premium-web-builder-20/artifacts/prrsmyaa_image.png',
+  logo: '/images/logo.png',
 };
 
 export const NAV_LINKS = [
