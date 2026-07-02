@@ -70,7 +70,11 @@ export default function Navbar() {
           <button onClick={() => go('home')} className="flex items-center gap-2 group flex-none pl-1">
             <div className="relative">
               <div className="absolute inset-0 bg-[#A855F7]/40 blur-xl rounded-full group-hover:bg-[#A855F7]/70 transition-all" />
-              <img src={BRAND.logo} alt="iDesign4U logo" className="relative w-9 h-9 lg:w-10 lg:h-10 object-contain rounded-lg group-hover:rotate-6 transition-transform" />
+              <img
+  src={BRAND.logo}
+  alt="iDesign4U logo"
+  className="relative w-14 h-14 lg:w-16 lg:h-16 object-contain transition-transform duration-700"
+/>
             </div>
             <div className="hidden sm:block text-left leading-tight">
               <div className="font-extrabold text-[14px] tracking-tight text-white">I DESIGN 4 U</div>
