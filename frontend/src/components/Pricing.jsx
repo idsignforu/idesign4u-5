@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Check, Crown, Sparkles, ArrowRight, X, MessageCircle } from 'lucide-react';
 import * as L from 'lucide-react';
-import { PRICING, CUSTOM_QUOTE_FEATURES } from '../mock';
+import { PRICING, CUSTOM_QUOTE_FEATURES, PRICING_CLARIFICATIONS } from '../mock';
 import { formatINR, waLink } from '../lib/utils';
 
 export default function Pricing() {
@@ -111,6 +111,22 @@ export default function Pricing() {
             );
           })}
         </div>
+
+        {PRICING_CLARIFICATIONS && PRICING_CLARIFICATIONS.length > 0 && (
+          <div className="mt-12 bg-[#130B24] border border-[#A855F7]/25 rounded-3xl p-6 md:p-8 text-left">
+            <h3 className="text-lg font-extrabold text-white mb-4 flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-[#C084FC]" /> Scope & Service Policy Clarifications
+            </h3>
+            <div className="grid md:grid-cols-2 gap-4">
+              {PRICING_CLARIFICATIONS.map((item, idx) => (
+                <div key={idx} className="bg-[#1E1135]/70 border border-[#A855F7]/15 rounded-2xl p-4 md:p-5">
+                  <h4 className="text-sm font-bold text-[#C084FC] mb-1.5">{item.title}</h4>
+                  <p className="text-xs text-[#C4B5FD]/80 leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         <div className="mt-12 text-center">
           <p className="text-sm text-[#C4B5FD]">Need something custom or have specific requirements?</p>

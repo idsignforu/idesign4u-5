@@ -137,7 +137,7 @@ export const PRICING = [
     price: 5999, strike: 8999, badge: null, cta: 'Get Started',
     features: [
       '5 Pages Website (100% Responsive)', 'Domain Included (.com / .in / .co.in)',
-      '1 Year Cloud Hosting Included', 'SSL Certificate Included', 'Business Email Setup Assistance',
+      '1 Year Cloud Hosting Included', 'SSL Certificate Included',
       'Logo Design included', 'Mobile Responsive Premium UI', 'WhatsApp & Call Button',
       'Contact / Inquiry Form', 'Basic SEO Setup (15+ Keywords)', 'Google Map & Business Listing',
       'Social Media Integration', 'Fast Delivery', 'Phone / Chat Support',
@@ -148,10 +148,10 @@ export const PRICING = [
     price: 7999, strike: 11999, badge: 'Most Popular', cta: 'Get Started',
     features: [
       '7–10 Pages Website (100% Responsive)', 'Domain included (.com / .in)',
-      '1 Year Cloud Hosting Included', 'SSL Certificate Included', 'Business Email Setup Assistance',
+      '1 Year Cloud Hosting Included', 'SSL Certificate Included',
       'Logo + Brand Kit included', 'Image Gallery & Portfolio Section', 'Advanced SEO (25–40 Keywords)',
       'Google Analytics & Search Console', 'Blog / News Module', 'Admin Panel (Full Access)',
-      'WhatsApp Chat Integration', 'Cloudflare Security + Firewall', 'Automated Website Backup',
+      'WhatsApp Button Integration', 'Cloudflare Security + Firewall',
       'Fast Delivery', 'Priority Support',
     ],
   },
@@ -159,15 +159,33 @@ export const PRICING = [
     id: 'ecommerce', name: 'Pro E-Commerce', tagline: 'For online stores with unlimited products',
     price: 11999, strike: 16999, badge: 'Best Value', cta: 'Get Started',
     features: [
-      '10+ Pages Website (100% Responsive)', 'Unlimited Products Listing',
+      '10+ Pages Website (100% Responsive)', 'Unlimited Product Management via Admin Panel',
       'Domain Included (.com / .in / .co.in)', '1 Year Cloud Hosting Included',
       'Full Cart, Checkout & Order Tracking', 'Razorpay & UPI Payment Gateway',
       'Customer Login Dashboard', 'Order & Inventory Management',
       'Coupons & Discount Engine', 'Multi-Image Product Galleries',
-      'Advanced SEO + Schema Markup', 'Email & SMS Notifications',
-      'Admin Panel (Full Access)', 'SSL + Cloudflare Security',
-      'Fast Delivery', 'Priority Support',
+      'Advanced SEO + Schema Markup', 'Admin Panel (Full Access)',
+      'SSL + Cloudflare Security', 'Fast Delivery', 'Priority Support',
     ],
+  },
+];
+
+export const PRICING_CLARIFICATIONS = [
+  {
+    title: 'Product Upload Policy',
+    desc: 'The e-commerce website includes a full admin panel that allows the client to add and manage products without a fixed product-count restriction. A limited number of products will be uploaded by iDesign4u for the initial website launch/setup. Bulk uploading of the client’s complete product catalogue is a separate paid service.',
+  },
+  {
+    title: 'Need us to upload your complete catalogue?',
+    desc: 'Bulk product upload, catalogue migration, product data formatting, image mapping, variants, attributes and large-scale product entry are available as a separate paid service. Pricing depends on catalogue size, data format, product complexity and manual processing requirements.',
+  },
+  {
+    title: 'Professional Business Email',
+    desc: 'Business email accounts using your domain, such as info@yourdomain.com, are available separately. Provider/subscription charges depend on the selected email service and number of mailboxes required.',
+  },
+  {
+    title: 'Transactional Email & SMS',
+    desc: 'Automated transactional email, SMS and OTP services require third-party providers and usage-based services. Integration can be provided separately, while provider subscriptions, messaging and usage charges are billed separately.',
   },
 ];
 
