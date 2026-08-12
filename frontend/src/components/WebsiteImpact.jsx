@@ -1,114 +1,130 @@
 import * as L from 'lucide-react';
+import { motion } from 'framer-motion';
 import { WEBSITE_IMPACT } from '../mock';
+import { Link } from 'react-router-dom';
 
 export default function WebsiteImpact() {
   return (
-    <section className="section-pad bg-[#0A0118] relative overflow-hidden">
-      <div className="orb drift-1" style={{ top: '15%', left: '50%', width: 500, height: 500, background: '#7C3AED', opacity: 0.12, transform: 'translateX(-50%)' }} />
-      <div className="absolute inset-0 bg-grid opacity-25 pointer-events-none" />
+    <section className="py-20 md:py-28 bg-white relative overflow-hidden">
+      {/* Subtle Background Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-aura-sky rounded-full blur-[140px] pointer-events-none -z-10" />
 
-      <div className="relative max-w-7xl mx-auto px-4">
+      <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 relative">
         <div className="flex flex-col items-center text-center mb-14">
-          <span className="inline-flex items-center gap-2 bg-[#1E1135] border border-[#A855F7]/30 text-[#C084FC] rounded-full px-4 py-1.5 text-xs font-bold tracking-wider uppercase">
+          <span className="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 text-brand rounded-full px-4 py-1.5 text-xs font-bold tracking-wider uppercase">
             <L.Scale className="w-3.5 h-3.5" />
-            The Real Difference
+            The Real Impact
           </span>
-          <h2 className="section-title mt-4 max-w-3xl glow-text-soft">
-            Website hai toh{' '}
-            <span className="glow-text">Business hai</span>
+          <h2 className="font-outfit font-extrabold text-3xl sm:text-4xl lg:text-5xl text-ink tracking-tight mt-4 max-w-3xl">
+            Website hai toh <span className="text-gradient-blue">Business hai</span>
           </h2>
-          <p className="mt-4 text-[#C4B5FD] max-w-2xl">
+          <p className="font-sans text-base text-muted max-w-2xl mt-4 leading-relaxed">
             See exactly what you gain with a professional website — and what you lose every single day without one.
           </p>
         </div>
 
-        <div className="grid gap-4 lg:grid-cols-[1fr_auto_1fr] lg:gap-6 items-stretch">
+        <div className="grid gap-6 lg:grid-cols-[1fr_auto_1fr] lg:gap-8 items-stretch">
           {/* With Website */}
-          <div className="relative rounded-3xl p-5 md:p-8 overflow-hidden border border-[#A855F7]/40" style={{ background: 'linear-gradient(160deg, rgba(124, 58, 237, 0.18) 0%, rgba(30, 17, 53, 0.6) 100%)' }}>
-            <div className="absolute -top-12 -right-12 w-44 h-44 rounded-full bg-[#A855F7]/20 blur-3xl" />
-            <div className="relative">
-              <div className="inline-flex items-center gap-2 bg-[#A855F7]/20 border border-[#A855F7]/45 text-[#E9D5FF] rounded-full px-3.5 py-1.5 text-xs font-extrabold uppercase tracking-wider">
-                <L.Check className="w-3.5 h-3.5" /> With a Website
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="relative rounded-3xl p-6 sm:p-8 glass-panel border border-blue-100 shadow-card-blue flex flex-col justify-between"
+          >
+            <div>
+              <div className="inline-flex items-center gap-2 bg-brand/10 border border-brand/20 text-brand rounded-full px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider">
+                <L.Check className="w-3.5 h-3.5 stroke-[3px]" /> With a Website
               </div>
-              <h3 className="mt-4 text-2xl md:text-3xl font-extrabold text-white">You <span className="glow-text">Win</span> Every Day</h3>
-              <p className="mt-1 text-sm text-[#C4B5FD]">Compounding growth, professional brand, real revenue.</p>
+              <h3 className="mt-4 font-outfit text-2xl sm:text-3xl font-extrabold text-ink">You <span className="text-brand">Win</span> Every Day</h3>
+              <p className="mt-1 text-sm text-muted">Compounding growth, professional brand, direct revenue.</p>
 
-              <ul className="mt-6 space-y-3.5">
+              <ul className="mt-6 space-y-4">
                 {WEBSITE_IMPACT.withWebsite.map((item) => {
                   const Icon = L[item.icon] || L.Check;
                   return (
-                    <li key={item.title} className="flex items-start gap-3 group">
-                      <span className="flex-none w-9 h-9 rounded-xl bg-[#A855F7]/20 border border-[#A855F7]/40 flex items-center justify-center group-hover:bg-[#A855F7]/30 transition-colors">
-                        <Icon className="w-4 h-4 text-[#C084FC]" />
+                    <li key={item.title} className="flex items-start gap-3.5 group">
+                      <span className="flex-none w-9 h-9 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-brand group-hover:bg-brand group-hover:text-white transition-colors shadow-xs">
+                        <Icon className="w-4 h-4" />
                       </span>
                       <div>
-                        <div className="font-bold text-white text-sm">{item.title}</div>
-                        <div className="text-xs text-[#C4B5FD] leading-relaxed mt-0.5">{item.desc}</div>
+                        <div className="font-bold text-ink-soft text-sm">{item.title}</div>
+                        <div className="text-xs text-muted leading-relaxed mt-0.5">{item.desc}</div>
                       </div>
                     </li>
                   );
                 })}
               </ul>
             </div>
-          </div>
+          </motion.div>
 
-          {/* VS divider */}
+          {/* VS Divider */}
           <div className="hidden lg:flex flex-col items-center justify-center px-2">
-            <div className="h-12 w-px bg-gradient-to-b from-transparent via-[#A855F7]/40 to-transparent" />
-            <div className="my-2 w-14 h-14 rounded-full flex items-center justify-center text-xs font-black tracking-wider text-white shadow-[0_0_30px_rgba(168,85,247,0.5)]" style={{ background: 'linear-gradient(135deg, #7C3AED, #A855F7)' }}>
+            <div className="h-16 w-px bg-slate-200" />
+            <div className="my-3 w-12 h-12 rounded-full bg-brand text-white flex items-center justify-center text-xs font-extrabold shadow-lg">
               VS
             </div>
-            <div className="h-12 w-px bg-gradient-to-b from-transparent via-[#A855F7]/40 to-transparent" />
+            <div className="h-16 w-px bg-slate-200" />
           </div>
+
           <div className="flex lg:hidden items-center gap-3 my-2">
-            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-[#A855F7]/40 to-transparent" />
-            <div className="w-12 h-12 rounded-full flex items-center justify-center text-xs font-black tracking-wider text-white" style={{ background: 'linear-gradient(135deg, #7C3AED, #A855F7)' }}>VS</div>
-            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-[#A855F7]/40 to-transparent" />
+            <div className="flex-1 h-px bg-slate-200" />
+            <div className="w-10 h-10 rounded-full bg-brand text-white flex items-center justify-center text-xs font-extrabold shadow-md">VS</div>
+            <div className="flex-1 h-px bg-slate-200" />
           </div>
 
           {/* Without Website */}
-          <div className="relative rounded-3xl p-5 md:p-8 overflow-hidden border border-red-500/25" style={{ background: 'linear-gradient(160deg, rgba(127, 29, 29, 0.18) 0%, rgba(30, 17, 53, 0.6) 100%)' }}>
-            <div className="absolute -top-12 -left-12 w-44 h-44 rounded-full bg-red-500/15 blur-3xl" />
-            <div className="relative">
-              <div className="inline-flex items-center gap-2 bg-red-500/15 border border-red-500/40 text-red-200 rounded-full px-3.5 py-1.5 text-xs font-extrabold uppercase tracking-wider">
-                <L.X className="w-3.5 h-3.5" /> Without a Website
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="relative rounded-3xl p-6 sm:p-8 bg-rose-50/30 border border-rose-100 shadow-xs flex flex-col justify-between"
+          >
+            <div>
+              <div className="inline-flex items-center gap-2 bg-rose-100/60 border border-rose-200 text-rose-600 rounded-full px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider">
+                <L.X className="w-3.5 h-3.5 stroke-[3px]" /> Without a Website
               </div>
-              <h3 className="mt-4 text-2xl md:text-3xl font-extrabold text-white">You <span className="text-red-300">Lose</span> Every Day</h3>
-              <p className="mt-1 text-sm text-red-200/80">Invisible, untrustworthy, dependent on platforms.</p>
+              <h3 className="mt-4 font-outfit text-2xl sm:text-3xl font-extrabold text-ink">You <span className="text-rose-500">Lose</span> Every Day</h3>
+              <p className="mt-1 text-sm text-muted">Invisible to online buyers, paying commissions forever.</p>
 
-              <ul className="mt-6 space-y-3.5">
+              <ul className="mt-6 space-y-4">
                 {WEBSITE_IMPACT.withoutWebsite.map((item) => {
                   const Icon = L[item.icon] || L.X;
                   return (
-                    <li key={item.title} className="flex items-start gap-3 group">
-                      <span className="flex-none w-9 h-9 rounded-xl bg-red-500/15 border border-red-500/30 flex items-center justify-center group-hover:bg-red-500/25 transition-colors">
-                        <Icon className="w-4 h-4 text-red-300" />
+                    <li key={item.title} className="flex items-start gap-3.5 group">
+                      <span className="flex-none w-9 h-9 rounded-xl bg-rose-100/80 border border-rose-200 flex items-center justify-center text-rose-600 group-hover:bg-rose-500 group-hover:text-white transition-colors shadow-xs">
+                        <Icon className="w-4 h-4" />
                       </span>
                       <div>
-                        <div className="font-bold text-white text-sm">{item.title}</div>
-                        <div className="text-xs text-red-200/70 leading-relaxed mt-0.5">{item.desc}</div>
+                        <div className="font-bold text-ink-soft text-sm">{item.title}</div>
+                        <div className="text-xs text-muted leading-relaxed mt-0.5">{item.desc}</div>
                       </div>
                     </li>
                   );
                 })}
               </ul>
             </div>
-          </div>
+          </motion.div>
         </div>
 
-        <div className="mt-10 text-center">
-          <p className="text-[#C4B5FD] text-sm max-w-2xl mx-auto">
-            The math is simple. Every day without a website is a day your competitors win.{' '}
-            <span className="text-white font-semibold">Start at ₹5,999 — launch in 48 hours.</span>
+        <div className="mt-12 text-center">
+          <p className="text-muted text-sm max-w-xl mx-auto">
+            Every day without a website is a day your competitors win.{' '}
+            <strong className="text-ink font-semibold">Start at ₹5,999 — launch in 48 hours.</strong>
           </p>
-          <a
-            href="#pricing"
-            className="mt-5 inline-flex items-center gap-2 btn-gradient text-white font-bold rounded-full px-7 py-4"
-          >
-            Flip the Switch — See Pricing <L.ArrowRight className="w-4 h-4" />
-          </a>
+          <div className="mt-6 flex items-center justify-center">
+            <Link
+              to="/pricing"
+              className="btn-primary-blue px-7 py-3.5 rounded-2xl font-bold text-sm flex items-center gap-2 shadow-lg"
+            >
+              <span>See Website Pricing</span>
+              <L.ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </div>
     </section>
   );
 }
+

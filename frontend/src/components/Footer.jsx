@@ -1,111 +1,179 @@
-import { Phone, Mail, Instagram, MapPin, ArrowUp, MessageCircle } from 'lucide-react';
-import { BRAND, NAV_LINKS, SERVICES } from '../mock';
+import { useEffect, useRef } from 'react';
+import { Mail, Phone, MapPin, ArrowRight, Bot } from 'lucide-react';
+import { BRAND } from '../mock';
+import { Link } from 'react-router-dom';
 import { waLink } from '../lib/utils';
 
 export default function Footer() {
-  const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+  const footerRef = useRef(null);
+  const glowRef = useRef(null);
+  const textRef = useRef(null);
+
+  useEffect(() => {
+    const footer = footerRef.current;
+    const glow = glowRef.current;
+    const text = textRef.current;
+
+    if (!footer || !glow || !text) return;
+
+    let rafId = null;
+
+    const handleMouseMove = (e) => {
+      const rect = footer.getBoundingClientRect();
+      const x = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
+      const y = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
+
+      if (rafId) cancelAnimationFrame(rafId);
+
+      rafId = requestAnimationFrame(() => {
+        glow.style.transform = `translate(calc(-50% + ${x * 40}px), ${y * 30}px)`;
+        text.style.transform = `translate(${x * -15}px, calc(18% + ${y * -10}px))`;
+      });
+    };
+
+    const handleMouseLeave = () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        glow.style.transform = 'translate(-50%, 0px)';
+        text.style.transform = 'translate(0px, 18%)';
+      });
+    };
+
+    footer.addEventListener('mousemove', handleMouseMove);
+    footer.addEventListener('mouseleave', handleMouseLeave);
+
+    return () => {
+      footer.removeEventListener('mousemove', handleMouseMove);
+      footer.removeEventListener('mouseleave', handleMouseLeave);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, []);
 
   return (
-    <footer className="bg-[#0A0118] border-t border-[#A855F7]/15 text-white relative overflow-hidden">
-      <div className="orb drift-1" style={{ top: '0%', right: '0%', width: 500, height: 500, background: '#7C3AED', opacity: 0.12 }} />
-      <div className="max-w-7xl mx-auto px-4 pt-16 pb-8 relative">
-        <div className="grid grid-cols-3 lg:grid-cols-12 gap-6 lg:gap-10">
-          {/* Brand */}
-          <div className="col-span-3 lg:col-span-4">
-            <div className="flex items-center gap-3">
-              <div className="relative">
-                <div className="absolute inset-0 bg-[#A855F7]/40 blur-xl rounded-full" />
-                <img src={BRAND.logo} alt="iDesign4U" className="relative w-12 h-12 object-contain" />
+    <footer
+      ref={footerRef}
+      className="relative overflow-hidden z-0 bg-slate-50 text-slate-700 pt-24 pb-12 border-t border-black/10 font-outfit"
+    >
+      {/* Background Parallax Layer */}
+      <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none flex flex-col justify-end items-center">
+        {/* Glow Orb */}
+        <div
+          ref={glowRef}
+          className="absolute bottom-[-150px] left-1/2 -translate-x-1/2 w-[80%] max-w-[1200px] h-[500px] bg-blue-400/20 rounded-[100%] blur-[130px] opacity-60 transition-transform duration-300 ease-out"
+        />
+        {/* Huge Silhouette Text */}
+        <div
+          ref={textRef}
+          className="relative w-full flex justify-center items-center translate-y-[18%] text-[17vw] font-black tracking-tighter leading-none text-slate-200/80 select-none transition-transform duration-300 ease-out"
+        >
+          <span className="flex items-center gap-[2vw]">
+            <Bot className="w-[13vw] h-[13vw] text-slate-200" />
+            iD4U
+          </span>
+        </div>
+      </div>
+
+      {/* Main Content Wrapper */}
+      <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 relative z-10">
+        
+        {/* Top Section Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-12 mb-20">
+          
+          {/* Left Column (Brand, Heading, CTA) */}
+          <div>
+            <div className="group flex items-center gap-3 mb-8 cursor-pointer w-fit">
+              <div className="w-11 h-11 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-brand transition-transform duration-500 group-hover:rotate-180 shadow-xs">
+                <Bot className="w-6 h-6" />
               </div>
-              <div>
-                <div className="font-extrabold text-lg text-white">I DESIGN 4 U</div>
-                <div className="text-[10px] text-[#C084FC] uppercase tracking-[0.18em] font-bold">Premium Web Designs</div>
-              </div>
+              <span className="text-3xl font-bold text-ink tracking-tight font-fustat">
+                {BRAND.name}
+              </span>
             </div>
-            <p className="mt-5 text-sm text-[#C4B5FD] leading-relaxed max-w-sm">
-              {BRAND.subtagline}. We craft high-converting websites for ambitious brands across India and beyond.
-            </p>
-            <div className="mt-5 flex items-center gap-2">
-              <SocialBtn href={`tel:${BRAND.phoneRaw}`} icon={Phone} />
-              <SocialBtn href={`mailto:${BRAND.email}`} icon={Mail} />
-              <SocialBtn href={waLink('Hi, I want to enquire.')} icon={MessageCircle} />
-              <SocialBtn href="https://instagram.com/i_design4.u" icon={Instagram} />
-            </div>
+
+            <h2 className="text-4xl lg:text-5xl xl:text-6xl font-semibold text-ink leading-[1.1] max-w-xl mb-10">
+              The foundation for <br />
+              <span className="text-gradient-blue">
+                high-value
+              </span>{' '}
+              digital operations.
+            </h2>
+
+            <a
+              href={waLink('Hi, I am ready to start building a new website for my business.')}
+              target="_blank"
+              rel="noreferrer"
+              className="btn-primary-blue inline-flex items-center justify-center px-8 py-4 text-sm sm:text-base font-bold tracking-wider rounded-2xl shadow-lg hover:scale-105 transition-all duration-300 uppercase gap-2"
+            >
+              <span>START BUILDING</span>
+              <ArrowRight className="w-4 h-4" />
+            </a>
           </div>
 
-          {/* Quick Links */}
-          <div className="lg:col-span-2">
-            <div className="text-sm font-extrabold mb-4 text-white">Navigate</div>
-            <ul className="grid grid-cols-2 gap-x-3 gap-y-2.5 lg:grid-cols-2">
-              {NAV_LINKS.map(n => (
-                <li key={n.id}>
-                  <a href={`#${n.id}`} className="text-sm text-[#C4B5FD] hover:text-[#C084FC] transition-colors">
-                    {n.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
+          {/* Right Column (Contact Info Cards) */}
+          <div className="flex flex-col justify-center gap-8 lg:pl-16 mt-8 lg:mt-0">
+            <ContactCard
+              icon={Phone}
+              label="Phone Call"
+              value={BRAND.phone}
+              href={`tel:${BRAND.phoneRaw}`}
+            />
+            <ContactCard
+              icon={Mail}
+              label="Email Address"
+              value={BRAND.email}
+              href={`mailto:${BRAND.email}`}
+            />
+            <ContactCard
+              icon={MapPin}
+              label="Location"
+              value={BRAND.location}
+              href="#contact"
+            />
           </div>
 
-          {/* Services */}
-          <div className="lg:col-span-3">
-            <div className="text-sm font-extrabold mb-4 text-white">Services</div>
-            <ul className="space-y-2.5">
-              {SERVICES.slice(0, 6).map(s => (
-                <li key={s.title} className="text-sm text-[#C4B5FD] hover:text-[#C084FC] transition-colors cursor-pointer">
-                  {s.title}
-                </li>
-              ))}
-            </ul>
+        </div>
+
+        {/* Bottom Section (Copyright & Navigation Links) */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-10 border-t border-black/10 text-sm sm:text-base">
+          <div className="text-center md:text-left text-muted">
+            <p>© {new Date().getFullYear()} {BRAND.name}. All rights reserved.</p>
+            <p className="text-xs text-muted mt-1">Boutique Web Design Studio • Hyderabad, India</p>
           </div>
 
-          {/* Contact */}
-          <div className="lg:col-span-3">
-            <div className="text-sm font-extrabold mb-4 text-white">Reach Us</div>
-            <ul className="space-y-3 text-sm">
-              <li className="flex items-start gap-2 text-[#C4B5FD]">
-                <MapPin className="w-4 h-4 mt-0.5 text-[#C084FC] flex-none" />
-                {BRAND.location}
-              </li>
-              <li className="flex items-start gap-2 text-[#C4B5FD]">
-                <Phone className="w-4 h-4 mt-0.5 text-[#C084FC] flex-none" />
-                <a href={`tel:${BRAND.phoneRaw}`} className="hover:text-white">{BRAND.phone}</a>
-              </li>
-              <li className="flex items-start gap-2 text-[#C4B5FD]">
-                <Mail className="w-4 h-4 mt-0.5 text-[#C084FC] flex-none" />
-                <a href={`mailto:${BRAND.email}`} className="hover:text-white break-all">{BRAND.email}</a>
-              </li>
-            </ul>
+          <div className="flex flex-wrap items-center justify-center gap-6 text-slate-600 font-medium text-sm">
+            <Link to="/services" className="hover:text-brand transition-colors">Services</Link>
+            <Link to="/pricing" className="hover:text-brand transition-colors">Pricing</Link>
+            <Link to="/portfolio" className="hover:text-brand transition-colors">Portfolio</Link>
+            <Link to="/about" className="hover:text-brand transition-colors">About Us</Link>
+            <Link to="/faq" className="hover:text-brand transition-colors">FAQ</Link>
+            <Link to="/contact" className="hover:text-brand transition-colors">Contact</Link>
           </div>
         </div>
 
-        <div className="mt-12 pt-6 border-t border-[#A855F7]/15 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-[#C4B5FD]/70">
-            © {new Date().getFullYear()} {BRAND.name}. All rights reserved. — Hyderabad, India.
-          </p>
-          <div className="flex items-center gap-4 text-xs text-[#C4B5FD]/70">
-            <span className="hover:text-[#C084FC] cursor-pointer">Privacy</span>
-            <span className="hover:text-[#C084FC] cursor-pointer">Terms</span>
-            <span className="hover:text-[#C084FC] cursor-pointer">Refund Policy</span>
-            <button onClick={scrollTop} className="w-9 h-9 rounded-full btn-gradient text-white flex items-center justify-center">
-              <ArrowUp className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
       </div>
     </footer>
   );
 }
 
-function SocialBtn({ icon: Icon, href }) {
+function ContactCard({ icon: Icon, label, value, href }) {
   return (
     <a
       href={href}
       target={href.startsWith('http') ? '_blank' : undefined}
       rel="noreferrer"
-      className="w-10 h-10 rounded-full bg-[#1E1135] border border-[#A855F7]/30 hover:btn-gradient hover:border-transparent flex items-center justify-center transition-all text-[#C084FC] hover:text-white"
+      className="group flex items-start gap-6 cursor-pointer bg-white p-5 rounded-2xl border border-black/5 shadow-xs hover:border-brand hover:shadow-card-blue transition-all"
     >
-      <Icon className="w-4 h-4" />
+      <div className="w-14 h-14 rounded-xl flex-shrink-0 flex items-center justify-center bg-blue-50 text-brand border border-blue-100 transition-all duration-300 group-hover:scale-105 group-hover:bg-brand group-hover:text-white">
+        <Icon className="w-6 h-6" />
+      </div>
+      <div className="pt-1">
+        <div className="text-xs font-bold uppercase tracking-wider text-muted group-hover:text-brand transition-colors mb-1">
+          {label}
+        </div>
+        <div className="text-base sm:text-lg font-bold text-ink group-hover:text-brand transition-colors">
+          {value}
+        </div>
+      </div>
     </a>
   );
 }

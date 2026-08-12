@@ -1,25 +1,14 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { Search, Calendar, Clock, ArrowRight, BookOpen, ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { BLOG_POSTS, BLOG_CATEGORIES } from '../mock';
+import { Link } from 'react-router-dom';
 
-const useBlogPageSize = () => {
-  const get = () => (typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches ? 4 : 10);
-  const [size, setSize] = useState(get);
-  useEffect(() => {
-    const mql = window.matchMedia('(max-width: 767px)');
-    const onChange = () => setSize(get());
-    mql.addEventListener?.('change', onChange);
-    return () => mql.removeEventListener?.('change', onChange);
-  }, []);
-  return size;
-};
-
-export default function Blog() {
+export default function Blog({ limit = null }) {
   const [activeCat, setActiveCat] = useState('All');
   const [query, setQuery] = useState('');
   const [page, setPage] = useState(1);
   const [openPost, setOpenPost] = useState(null);
-  const PAGE_SIZE = useBlogPageSize();
 
   const filtered = useMemo(() => {
     return BLOG_POSTS.filter(p =>
@@ -28,216 +17,221 @@ export default function Blog() {
     );
   }, [activeCat, query]);
 
-  // Reset to page 1 when filter, search or page-size changes
-  useEffect(() => { setPage(1); }, [activeCat, query, PAGE_SIZE]);
-
-  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const displayPosts = limit ? filtered.slice(0, limit) : filtered;
+  const PAGE_SIZE = 6;
+  const totalPages = Math.max(1, Math.ceil(displayPosts.length / PAGE_SIZE));
   const pageStart = (page - 1) * PAGE_SIZE;
-  const visiblePosts = filtered.slice(pageStart, pageStart + PAGE_SIZE);
-
-  const goPage = (n) => {
-    setPage(n);
-    const el = document.getElementById('blog');
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
+  const visiblePosts = limit ? displayPosts : displayPosts.slice(pageStart, pageStart + PAGE_SIZE);
 
   return (
-    <section id="blog" className="section-pad bg-dark-radial relative">
-      <div className="orb drift-1" style={{ top: '10%', right: '0%', width: 400, height: 400, background: '#A855F7', opacity: 0.15 }} />
-      <div className="absolute inset-0 bg-dots opacity-30 pointer-events-none" />
+    <section className="py-20 md:py-28 bg-white relative overflow-hidden">
+      {/* Background Spotlight */}
+      <div className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-aura-sky rounded-full blur-[140px] pointer-events-none -z-10" />
 
-      <div className="relative max-w-7xl mx-auto px-4">
+      <div className="w-full max-w-[1280px] mx-auto px-6 sm:px-12 lg:px-20 relative">
         <div className="flex flex-col items-center text-center mb-10">
-          <span className="inline-flex items-center gap-2 bg-[#1E1135] border border-[#A855F7]/30 text-[#C084FC] rounded-full px-4 py-1.5 text-xs font-bold tracking-wider uppercase">
+          <span className="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 text-brand rounded-full px-4 py-1.5 text-xs font-bold tracking-wider uppercase">
             <BookOpen className="w-3.5 h-3.5" />
-            Blog • 30+ Articles
+            Knowledge Base (30 Articles)
           </span>
-          <h2 className="section-title mt-4 glow-text-soft">
-            Our <span className="glow-text">Blog</span>
+          <h2 className="font-outfit font-extrabold text-3xl sm:text-4xl lg:text-5xl text-ink tracking-tight mt-4">
+            Insights, Guides & <span className="text-gradient-blue">SEO Tips</span>
           </h2>
-          <p className="mt-4 text-[#C4B5FD] max-w-2xl">
-            Tips, guides, and insights to help you build a successful online presence and rank #1 on Google.
+          <p className="font-sans text-base text-muted max-w-2xl mt-4 leading-relaxed">
+            Proven strategies to help your business get found on Google, convert visitors into customers, and scale online.
           </p>
         </div>
 
-        {/* Search */}
-        <div className="max-w-xl mx-auto">
-          <div className="flex items-center gap-2 bg-[#1E1135]/80 backdrop-blur border border-[#A855F7]/30 rounded-full px-5 py-3.5 focus-within:border-[#A855F7]/70 focus-within:ring-2 focus-within:ring-[#A855F7]/25 transition-all">
-            <Search className="w-4 h-4 text-[#C084FC]" />
-            <input
-              type="text"
-              placeholder="Search articles..."
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              className="flex-1 bg-transparent outline-none text-sm text-white placeholder:text-[#C4B5FD]/60"
-            />
-          </div>
-        </div>
-
-        {/* Categories */}
-        <div className="mt-8 flex flex-wrap justify-center gap-2">
-          {BLOG_CATEGORIES.map((c) => {
-            const isActive = activeCat === c;
-            return (
-              <button
-                key={c}
-                onClick={() => setActiveCat(c)}
-                className={`px-4 py-2 rounded-full text-sm font-bold transition-all ${
-                  isActive
-                    ? 'btn-gradient text-white shadow-[0_8px_20px_rgba(168,85,247,0.4)]'
-                    : 'bg-[#1E1135] border border-[#A855F7]/25 text-[#C4B5FD] hover:border-[#A855F7]/50 hover:text-white'
-                }`}
-              >
-                {c}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Results count */}
-        <div className="mt-6 text-center text-sm text-[#C4B5FD]">
-          Showing <span className="font-bold text-white">{filtered.length === 0 ? 0 : pageStart + 1}–{Math.min(pageStart + PAGE_SIZE, filtered.length)}</span> of <span className="font-bold text-white">{filtered.length}</span> article{filtered.length !== 1 && 's'}
-        </div>
-
-        {/* Posts grid */}
-        <div className="mt-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
-          {visiblePosts.length === 0 ? (
-            <div className="col-span-full text-center text-[#C4B5FD] py-12">
-              No articles found. Try a different search or category.
+        {!limit && (
+          <>
+            {/* Search Input */}
+            <div className="max-w-md mx-auto mb-8">
+              <div className="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-full px-4 py-3 focus-within:border-brand focus-within:ring-2 focus-within:ring-brand/20 transition-all shadow-xs">
+                <Search className="w-4 h-4 text-brand" />
+                <input
+                  type="text"
+                  placeholder="Search articles (e.g. SEO, Pricing, Speed)..."
+                  value={query}
+                  onChange={(e) => { setQuery(e.target.value); setPage(1); }}
+                  className="flex-1 bg-transparent outline-none text-sm text-ink placeholder:text-slate-400"
+                />
+              </div>
             </div>
-          ) : visiblePosts.map((p) => (
-            <article
+
+            {/* Category Filter Chips */}
+            <div className="flex flex-wrap justify-center gap-2 mb-10">
+              {BLOG_CATEGORIES.map((c) => (
+                <button
+                  key={c}
+                  onClick={() => { setActiveCat(c); setPage(1); }}
+                  className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
+                    activeCat === c
+                      ? 'bg-brand text-white shadow-xs'
+                      : 'bg-slate-100 text-muted hover:text-ink hover:bg-slate-200'
+                  }`}
+                >
+                  {c}
+                </button>
+              ))}
+            </div>
+          </>
+        )}
+
+        {/* Blog Post Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {visiblePosts.map((p, idx) => (
+            <motion.article
               key={p.id}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: idx * 0.05 }}
+              whileHover={{ y: -5 }}
               onClick={() => setOpenPost(p)}
-              data-testid={`blog-card-${p.id}`}
-              className="group card-lift bg-card-dark rounded-2xl overflow-hidden flex flex-col cursor-pointer"
+              className="group glass-panel rounded-3xl overflow-hidden border border-white/80 shadow-xs hover:shadow-card-blue transition-all cursor-pointer flex flex-col justify-between"
             >
-              <div className="relative aspect-[16/10] overflow-hidden">
-                <img src={p.image} alt={p.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0118] via-transparent to-transparent" />
-              </div>
-              <div className="p-3 md:p-4 flex flex-col flex-1">
-                <div className="flex items-center gap-2 text-[10px]">
-                  <span className="bg-[#A855F7]/15 border border-[#A855F7]/30 text-[#C084FC] rounded-full px-2 py-0.5 font-bold truncate">
+              <div>
+                <div className="aspect-[16/9] overflow-hidden relative">
+                  <img
+                    src={p.image}
+                    alt={p.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold text-brand shadow-xs">
                     {p.category}
-                  </span>
-                  <span className="hidden md:flex items-center gap-1 text-[#C4B5FD]">
-                    <Clock className="w-3 h-3" /> {p.readTime}
-                  </span>
+                  </div>
                 </div>
-                <h3 className="mt-2 text-sm md:text-[15px] font-extrabold text-white group-hover:text-[#E9D5FF] transition-colors leading-snug line-clamp-3">
-                  {p.title}
-                </h3>
-                {/* Description only on desktop, capped to 2 lines */}
-                <p className="hidden md:block mt-2 text-xs text-[#C4B5FD] leading-relaxed line-clamp-2 flex-1">{p.desc}</p>
-                <div className="mt-3 hidden md:flex items-center justify-between pt-3 border-t border-[#A855F7]/15">
-                  <span className="flex items-center gap-1 text-[10px] text-[#C4B5FD]">
-                    <Calendar className="w-3 h-3" /> {p.date}
-                  </span>
-                  <span className="inline-flex items-center gap-1 text-[10px] font-bold text-[#C084FC] group-hover:text-[#E9D5FF] transition-colors">
-                    Read <ArrowRight className="w-3 h-3" />
-                  </span>
+
+                <div className="p-6">
+                  <div className="flex items-center gap-3 text-xs text-muted mb-2">
+                    <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5 text-brand" /> {p.date}</span>
+                    <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5 text-brand" /> {p.readTime}</span>
+                  </div>
+                  <h3 className="font-outfit font-extrabold text-lg text-ink group-hover:text-brand transition-colors line-clamp-2">
+                    {p.title}
+                  </h3>
+                  <p className="font-sans text-xs text-muted leading-relaxed mt-2 line-clamp-2">
+                    {p.desc}
+                  </p>
                 </div>
               </div>
-            </article>
+
+              <div className="px-6 pb-6 pt-0 flex items-center justify-between text-xs font-bold text-brand">
+                <span>Read Full Article</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </motion.article>
           ))}
         </div>
 
-        {/* Pagination */}
-        {totalPages > 1 && (
-          <div className="mt-10 flex items-center justify-center gap-2">
+        {/* Pagination (Full Page View) */}
+        {!limit && totalPages > 1 && (
+          <div className="mt-12 flex items-center justify-center gap-2">
             <button
-              onClick={() => goPage(Math.max(1, page - 1))}
+              onClick={() => setPage((p) => Math.max(1, p - 1))}
               disabled={page === 1}
-              className="w-10 h-10 rounded-full bg-[#1E1135] border border-[#A855F7]/25 text-white flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed hover:bg-[#A855F7]/15 transition-all"
-              aria-label="Previous page"
+              className="w-9 h-9 rounded-full bg-slate-100 text-ink flex items-center justify-center disabled:opacity-40 disabled:cursor-not-allowed hover:bg-brand hover:text-white transition-colors"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
-            {Array.from({ length: totalPages }).map((_, i) => {
-              const n = i + 1;
-              const isActive = n === page;
-              return (
-                <button
-                  key={n}
-                  onClick={() => goPage(n)}
-                  className={`min-w-10 h-10 px-3 rounded-full text-sm font-bold transition-all ${
-                    isActive
-                      ? 'btn-gradient text-white shadow-[0_8px_20px_rgba(168,85,247,0.4)]'
-                      : 'bg-[#1E1135] border border-[#A855F7]/25 text-[#C4B5FD] hover:text-white hover:border-[#A855F7]/50'
-                  }`}
-                >
-                  {n}
-                </button>
-              );
-            })}
+            {Array.from({ length: totalPages }).map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setPage(i + 1)}
+                className={`w-9 h-9 rounded-full text-xs font-bold transition-all ${
+                  page === i + 1
+                    ? 'bg-brand text-white shadow-md'
+                    : 'bg-slate-100 text-muted hover:text-ink'
+                }`}
+              >
+                {i + 1}
+              </button>
+            ))}
             <button
-              onClick={() => goPage(Math.min(totalPages, page + 1))}
+              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
               disabled={page === totalPages}
-              className="w-10 h-10 rounded-full bg-[#1E1135] border border-[#A855F7]/25 text-white flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed hover:bg-[#A855F7]/15 transition-all"
-              aria-label="Next page"
+              className="w-9 h-9 rounded-full bg-slate-100 text-ink flex items-center justify-center disabled:opacity-40 disabled:cursor-not-allowed hover:bg-brand hover:text-white transition-colors"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>
         )}
+
+        {limit && (
+          <div className="mt-12 text-center">
+            <Link
+              to="/blog"
+              className="btn-primary-blue px-7 py-3.5 rounded-2xl font-bold text-sm inline-flex items-center gap-2 shadow-lg"
+            >
+              <span>Explore All 30 Articles</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        )}
       </div>
 
-      {/* Post detail modal */}
-      {openPost && (
-        <div
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 animate-fade-up"
-          style={{ background: 'rgba(10, 1, 24, 0.85)', backdropFilter: 'blur(8px)' }}
-          onClick={() => setOpenPost(null)}
-        >
+      {/* Post Modal */}
+      <AnimatePresence>
+        {openPost && (
           <div
-            className="relative w-full max-w-2xl max-h-[88vh] overflow-y-auto rounded-3xl border border-[#A855F7]/40 shadow-[0_30px_80px_rgba(168,85,247,0.4)]"
-            style={{ background: 'linear-gradient(160deg, #1E1135 0%, #0A0118 100%)' }}
-            onClick={(e) => e.stopPropagation()}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/40 backdrop-blur-md"
+            onClick={() => setOpenPost(null)}
           >
-            <button
-              onClick={() => setOpenPost(null)}
-              data-testid="blog-modal-close"
-              className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-[#0A0118]/80 border border-[#A855F7]/30 text-white flex items-center justify-center hover:bg-[#A855F7]/15"
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-100"
             >
-              <X className="w-5 h-5" />
-            </button>
-            <div className="relative aspect-[16/8] overflow-hidden">
-              <img src={openPost.image} alt={openPost.title} className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0A0118] via-[#0A0118]/40 to-transparent" />
-            </div>
-            <div className="p-6 md:p-8">
-              <div className="flex items-center gap-3 text-xs">
-                <span className="bg-[#A855F7]/15 border border-[#A855F7]/30 text-[#C084FC] rounded-full px-3 py-1 font-bold">
+              <button
+                onClick={() => setOpenPost(null)}
+                className="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-black/5 text-ink flex items-center justify-center hover:bg-black/10"
+              >
+                <X className="w-4 h-4" />
+              </button>
+
+              <div className="aspect-[16/8] rounded-2xl overflow-hidden mb-6">
+                <img src={openPost.image} alt={openPost.title} className="w-full h-full object-cover" />
+              </div>
+
+              <div className="flex items-center gap-3 text-xs text-muted mb-3">
+                <span className="bg-blue-50 border border-blue-100 text-brand px-3 py-1 rounded-full font-bold">
                   {openPost.category}
                 </span>
-                <span className="flex items-center gap-1 text-[#C4B5FD]">
-                  <Clock className="w-3 h-3" /> {openPost.readTime}
-                </span>
-                <span className="flex items-center gap-1 text-[#C4B5FD]">
-                  <Calendar className="w-3 h-3" /> {openPost.date}
-                </span>
+                <span>{openPost.date}</span>
+                <span>•</span>
+                <span>{openPost.readTime}</span>
               </div>
-              <h3 className="mt-4 text-2xl md:text-3xl font-extrabold text-white leading-tight">
+
+              <h3 className="font-outfit font-extrabold text-2xl sm:text-3xl text-ink leading-snug">
                 {openPost.title}
               </h3>
-              <p className="mt-4 text-[#C4B5FD] leading-relaxed">
+
+              <p className="font-sans text-sm text-muted leading-relaxed mt-4">
                 {openPost.desc}
               </p>
-              <p className="mt-4 text-sm text-[#C4B5FD]/80 leading-relaxed">
-                We publish in-depth articles covering web design, SEO, online growth, and digital marketing — packed with actionable advice from our work on multiple projects. Want this exact guide delivered to you, plus a free website audit?
-              </p>
-              <a
-                href="#contact"
-                onClick={() => setOpenPost(null)}
-                className="mt-6 inline-flex items-center gap-2 btn-gradient text-white font-bold rounded-full px-6 py-3 text-sm"
-              >
-                Talk to us about this <ArrowRight className="w-4 h-4" />
-              </a>
-            </div>
+
+              <div className="mt-6 p-4 rounded-2xl bg-slate-50 border border-slate-200 text-xs text-ink-soft leading-relaxed">
+                <strong className="font-bold text-ink">Key Takeaway for Business Owners:</strong> Websites optimized with proper heading structure, fast loading times, and clear WhatsApp CTAs generate up to 300% more leads. Reach out to iDesign4U to implement these best practices on your site.
+              </div>
+
+              <div className="mt-8 pt-4 border-t border-slate-100 flex justify-end">
+                <Link
+                  to="/contact"
+                  onClick={() => setOpenPost(null)}
+                  className="btn-primary-blue px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 shadow-md"
+                >
+                  <span>Discuss Your Website Project</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </motion.div>
           </div>
-        </div>
-      )}
+        )}
+      </AnimatePresence>
     </section>
   );
 }
+
