@@ -16,7 +16,7 @@ export const BRAND = {
   location: 'Hyderabad, India',
   whatsappBase: 'https://wa.me/919281410305',
   // Update this URL to change site-wide logo
-  logo: '/logo.png',
+  logo: '/images/logo.png',
 };
 
 export const NAV_LINKS = [
@@ -36,8 +36,8 @@ export const NAV_LINKS = [
 // ============================================================
 export const WEBSITE_IMPACT = {
   withWebsite: [
-    { icon: 'Globe', title: '24/7 Online Presence', desc: 'Your business sells, books, and converts even while you sleep.' },
-    { icon: 'BadgeCheck', title: 'Instant Credibility', desc: 'Customers trust businesses with professional websites 3.2x more.' },
+    { icon: 'Globe', title: 'Always Accessible Online', desc: 'Your business sells, books, and converts even while you sleep.' },
+    { icon: 'BadgeCheck', title: 'Build Customer Trust', desc: 'A professional website helps build customer trust and credibility.' },
     { icon: 'Search', title: 'Found on Google', desc: 'Get discovered by customers actively searching for what you offer.' },
     { icon: 'TrendingUp', title: 'Scalable Growth', desc: 'Sell to anyone, anywhere \u2014 not just your local 5 km radius.' },
     { icon: 'IndianRupee', title: 'Zero Commission', desc: 'Keep 100% of your earnings \u2014 no Justdial / Zomato cuts.' },
@@ -61,60 +61,58 @@ export const WEBSITE_IMPACT = {
 // ABOUT US data
 // ============================================================
 export const ABOUT_STATS = [
-  { value: 7, suffix: '+', label: 'Years Experience' },
-  { value: 500, suffix: '+', label: 'Brands Empowered' },
-  { value: 30, suffix: '+', label: 'Countries Served' },
-  { value: 24, suffix: '/7', label: 'Support Promise' },
+  { value: 100, suffix: '+', label: 'Websites Launched' },
+  { value: 4.9, suffix: '★', label: 'Google Rating' },
+  { value: 30, suffix: '+', label: 'Countries' },
+  { value: 1, suffix: ' Week', label: 'Avg. Delivery' },
 ];
-
 export const ABOUT_PROMISES = [
   {
     icon: 'Wallet',
     title: 'Truly Affordable',
-    desc: 'Premium quality websites at India-friendly prices — starting just ₹5,999. No bloated agency fees, no hidden upsells.',
+    desc: 'Premium quality websites at India-friendly prices \u2014 starting just \u20b95,999. No bloated agency fees, no hidden upsells.',
   },
   {
     icon: 'CreditCard',
     title: 'Installment Payments',
-    desc: 'Tight on budget? We’ve helped 100+ clients with flexible payment plans — split into 2 or 3 instalments. Talk to us.',
+    desc: 'Tight on budget? We\u2019ve helped clients with flexible payment plans \u2014 split into 2 or 3 instalments. Talk to us.',
   },
   {
     icon: 'ShieldCheck',
     title: 'Small Advance to Confirm',
-    desc: 'We accept a small advance before starting — it filters serious clients, protects our designers’ time & keeps prices low for genuine customers.',
+    desc: 'We accept a small advance before starting \u2014 it filters serious clients, protects our designers\u2019 time & keeps prices low for genuine customers.',
   },
   {
     icon: 'Globe2',
     title: 'Worldwide Delivery',
-    desc: 'We’ve served clients across UK, USA, UAE, Canada, Australia & 25+ countries. Premium global quality, Indian pricing.',
+    desc: 'We\u2019ve served clients across UK, USA, UAE, Canada, Australia & 25+ countries. Premium global quality, Indian pricing.',
   },
   {
     icon: 'Headphones',
     title: 'Real Humans, Real Support',
-    desc: 'No chatbots, no ticket queues. Direct WhatsApp with our founder & team — before, during, and after launch.',
+    desc: 'No chatbots, no ticket queues. Direct WhatsApp with our founder & team \u2014 before, during, and after launch.',
   },
   {
     icon: 'Rocket',
-    title: '48-Hour Launch Promise',
-    desc: 'Most websites delivered in 48 hours flat. Same quality, half the wait of every other agency.',
+    title: 'Fast Project Delivery',
+    desc: 'Most business websites are delivered quickly depending on project scope and content readiness.',
   },
 ];
 
 // ============================================================
-// ============================================================
-// SEO RANKING PROCESS — how we get you to Google #1
+// SEO PROCESS — improve local search visibility
 // ============================================================
 export const SEO_STEPS = [
-  { icon: 'Search', title: 'Keyword Research', desc: 'We find the exact phrases your customers type in Google. Long-tail, high-intent, low-competition — the gold.' },
-  { icon: 'FileText', title: 'On-Page SEO', desc: 'Optimized titles, meta descriptions, headings, alt tags, internal linking — every page crafted to rank.' },
-  { icon: 'Code2', title: 'Technical SEO', desc: 'Clean code, lightning-fast load times, mobile-first design, HTTPS, XML sitemap, robots.txt — Google-ready.' },
-  { icon: 'Sparkles', title: 'Schema Markup', desc: 'Structured data (LocalBusiness, FAQ, Product) so Google shows rich snippets — stars, prices, FAQs in search results.' },
-  { icon: 'MapPin', title: 'Google Business Profile', desc: 'We set up & optimize your GBP for “near me” searches — the #1 factor for local ranking.' },
+  { icon: 'Search', title: 'Keyword Research', desc: 'We find the exact phrases your customers type in Google. Long-tail, high-intent, low-competition \u2014 the gold.' },
+  { icon: 'FileText', title: 'On-Page SEO', desc: 'Optimized titles, meta descriptions, headings, alt tags, internal linking \u2014 every page crafted to rank.' },
+  { icon: 'Code2', title: 'Technical SEO', desc: 'Clean code, lightning-fast load times, mobile-first design, HTTPS, XML sitemap, robots.txt \u2014 Google-ready.' },
+  { icon: 'Sparkles', title: 'Schema Markup', desc: 'Structured data (LocalBusiness, FAQ, Product) so Google shows rich snippets \u2014 stars, prices, FAQs in search results.' },
+  { icon: 'MapPin', title: 'Google Business Profile', desc: 'We set up & optimize your GBP for \u201cnear me\u201d searches \u2014 the #1 factor for local ranking.' },
   { icon: 'Link2', title: 'Quality Backlinks', desc: 'Listings on 50+ Indian directories (Justdial, Sulekha, IndiaMART) + guest posts to build domain authority.' },
-  { icon: 'BookOpen', title: 'Content Strategy', desc: 'Blog setup with SEO-friendly templates — publish 2–4 articles/month to keep climbing.' },
-  { icon: 'Star', title: 'Reviews & Ratings', desc: 'We help you collect Google reviews systematically — social proof that compounds your ranking.' },
-  { icon: 'Gauge', title: 'Core Web Vitals', desc: 'LCP, INP, CLS — we hit Google’s page-experience benchmarks. Faster sites rank higher, period.' },
-  { icon: 'BarChart3', title: 'Track & Improve', desc: 'Google Analytics + Search Console setup — see exactly what works and double down monthly.' },
+  { icon: 'BookOpen', title: 'Content Strategy', desc: 'Blog setup with SEO-friendly templates \u2014 publish 2\u20134 articles/month to keep climbing.' },
+  { icon: 'Star', title: 'Reviews & Ratings', desc: 'We help you collect Google reviews systematically \u2014 social proof that compounds your ranking.' },
+  { icon: 'Gauge', title: 'Core Web Vitals', desc: 'LCP, INP, CLS \u2014 we hit Google\u2019s page-experience benchmarks. Faster sites rank higher, period.' },
+  { icon: 'BarChart3', title: 'Track & Improve', desc: 'Google Analytics + Search Console setup \u2014 see exactly what works and double down monthly.' },
 ];
 
 export const SEO_PLACES = [
@@ -127,7 +125,7 @@ export const SEO_PLACES = [
 ];
 
 export const PREMIUM_FEATURES = [
-  { title: 'Google Ads Setup', sub: 'Free with every plan', tag: '₹ FREE', icon: 'Megaphone' },
+  { title: 'Google Ads Setup', sub: 'included with every plan', tag: '₹ FREE', icon: 'Megaphone' },
   { title: 'Premium SEO Tools', sub: 'Rank higher on Google', tag: '₹ FREE', icon: 'TrendingUp' },
   { title: 'Firewall Security', sub: 'Protect your data', tag: '₹ FREE', icon: 'ShieldCheck' },
   { title: 'SSL Certificate', sub: 'Secure HTTPS site', tag: '₹ FREE', icon: 'Lock' },
@@ -138,36 +136,37 @@ export const PRICING = [
     id: 'starter', name: 'Starter Website', tagline: 'Ideal for small businesses & startups',
     price: 5999, strike: 8999, badge: null, cta: 'Get Started',
     features: [
-      '5 Pages Website (100% Responsive)', '1 Domain Included (.com / .in / .co.in)',
-      '1 Year Cloud Hosting Included', 'SSL Security Included', 'Logo Design Included',
-      'Mobile Responsive Premium UI', 'WhatsApp & Call Button', 'Contact / Inquiry Form',
-      'Basic SEO Setup (15+ Keywords)', 'Google Maps Integration', 'Social Media Integration',
-      'Priority Project Delivery', 'Phone / Chat Support',
+      '5 Pages Website (100% Responsive)', 'Domain Included (.com / .in / .co.in)',
+      '1 Year Cloud Hosting Included', 'SSL Certificate Included', 'Business Email Setup Assistance',
+      'Logo Design included', 'Mobile Responsive Premium UI', 'WhatsApp & Call Button',
+      'Contact / Inquiry Form', 'Basic SEO Setup (15+ Keywords)', 'Google Map & Business Listing',
+      'Social Media Integration', 'Fast Delivery', 'Phone / Chat Support',
     ],
   },
   {
     id: 'business', name: 'Business Website', tagline: 'Best for growing brands & service businesses',
     price: 7999, strike: 11999, badge: 'Most Popular', cta: 'Get Started',
     features: [
-      '7–10 Pages Website (100% Responsive)', '1 Domain Included (.com / .in / .co.in)',
-      '1 Year Cloud Hosting Included', 'SSL Security Included', 'Logo + Brand Kit Included',
-      'Image Gallery & Portfolio Section', 'Advanced SEO (25–40 Keywords)',
-      'Google Analytics & Search Console Setup', 'Blog / News Management Module',
-      'Admin Panel (Full Access)', 'WhatsApp Button Integration',
-      'Cloudflare Security + Firewall', 'Priority Project Delivery', 'Priority Support',
+      '7–10 Pages Website (100% Responsive)', 'Domain included (.com / .in)',
+      '1 Year Cloud Hosting Included', 'SSL Certificate Included', 'Business Email Setup Assistance',
+      'Logo + Brand Kit included', 'Image Gallery & Portfolio Section', 'Advanced SEO (25–40 Keywords)',
+      'Google Analytics & Search Console', 'Blog / News Module', 'Admin Panel (Full Access)',
+      'WhatsApp Chat Integration', 'Cloudflare Security + Firewall', 'Automated Website Backup',
+      'Fast Delivery', 'Priority Support',
     ],
   },
   {
-    id: 'ecommerce', name: 'Pro E-Commerce', tagline: 'For online stores with admin product management',
+    id: 'ecommerce', name: 'Pro E-Commerce', tagline: 'For online stores with unlimited products',
     price: 11999, strike: 16999, badge: 'Best Value', cta: 'Get Started',
     features: [
-      '10+ Pages Website (100% Responsive)', 'Unlimited Product Management via Admin Panel',
-      '1 Domain Included (.com / .in / .co.in)', '1 Year Cloud Hosting Included',
-      'Full Cart, Checkout & Order Tracking', 'Razorpay & UPI Payment Gateway Integration',
+      '10+ Pages Website (100% Responsive)', 'Unlimited Products Listing',
+      'Domain Included (.com / .in / .co.in)', '1 Year Cloud Hosting Included',
+      'Full Cart, Checkout & Order Tracking', 'Razorpay & UPI Payment Gateway',
       'Customer Login Dashboard', 'Order & Inventory Management',
       'Coupons & Discount Engine', 'Multi-Image Product Galleries',
-      'Advanced SEO + Schema Markup', 'Admin Panel (Full Access)',
-      'SSL + Cloudflare Security', 'Priority Project Delivery', 'Priority Support',
+      'Advanced SEO + Schema Markup', 'Email & SMS Notifications',
+      'Admin Panel (Full Access)', 'SSL + Cloudflare Security',
+      'Fast Delivery', 'Priority Support',
     ],
   },
 ];
@@ -177,10 +176,10 @@ export const CUSTOM_QUOTE_FEATURES = [
   { id: 'pages', label: 'Number of Pages', icon: 'FileText', options: ['1–5', '5–10', '10–20', '20+'] },
   { id: 'type', label: 'Website Type', icon: 'Layout', options: ['Business / Service', 'Ecommerce / Online Store', 'Portfolio', 'Landing Page', 'Booking / Appointment', 'School / Institution', 'Restaurant / Food', 'Clinic / Healthcare', 'Real Estate', 'Other'] },
   { id: 'logo', label: 'Need Logo Design?', icon: 'Sparkles', options: ['Yes', 'No — I have logo'] },
-  { id: 'seo', label: 'SEO Optimization', icon: 'Search', options: ['Basic Setup (15 Keywords)', 'Advanced SEO (25 Keywords)', 'Premium SEO (40+ Keywords + Schema)'] },
-  { id: 'marketing', label: 'Digital Marketing Add-on', icon: 'Megaphone', options: ['Not now', 'Google Ads Setup Assistance', 'Social Media Setup', 'Both'] },
-  { id: 'cms', label: 'Need Admin Panel / CMS?', icon: 'Settings', options: ['Yes — self editable admin panel', 'No — static site'] },
-  { id: 'timeline', label: 'Timeline', icon: 'Clock', options: ['Priority / 48 hours', '1 week', '2–4 weeks', 'Flexible'] },
+  { id: 'seo', label: 'SEO Optimization', icon: 'Search', options: ['Basic ', 'Advanced – 25 keywords', 'Premium – 40+ keywords + Schema'] },
+  { id: 'marketing', label: 'Digital Marketing Add-on', icon: 'Megaphone', options: ['Not now', 'Google Ads Setup', 'Social Media Setup', 'Both'] },
+  { id: 'cms', label: 'Need Admin Panel / CMS?', icon: 'Settings', options: ['Yes — self editable', 'No — static site'] },
+  { id: 'timeline', label: 'Timeline', icon: 'Clock', options: ['ASAP' , '1 week', '2–4 weeks', 'Flexible'] },
   { id: 'budget', label: 'Budget Range', icon: 'Wallet', options: ['Under ₹10k', '₹10k–₹25k', '₹25k–₹50k', '₹50k–₹1L', '₹1L+'] },
 ];
 
@@ -199,7 +198,7 @@ export const WHY_US = [
   { icon: 'Trophy', title: 'Award-Winning Team', desc: 'Recognized designers and developers delivering industry-leading experiences.' },
   { icon: 'Globe', title: 'Global Clientele', desc: 'Trusted by businesses across 30+ countries worldwide.' },
   { icon: 'TrendingUp', title: 'Result-Oriented', desc: 'Every solution built to drive traffic, leads, and measurable ROI.' },
-  { icon: 'Zap', title: 'Fast Turnaround', desc: 'Agile process — most websites delivered in just 48 hours.' },
+  { icon: 'Zap', title: 'Fast Turnaround', desc: 'Agile process — Most business websites are delivered quickly depending on project scope and content readiness.' },
   { icon: 'ShieldCheck', title: 'Secure & Scalable', desc: 'Built with security, performance, and scalability at the core.' },
   { icon: 'BrainCircuit', title: 'Strategy First', desc: 'We understand your business before we design or code anything.' },
   { icon: 'Headphones', title: 'Dedicated Support', desc: 'Real humans, real support — before, during, and after delivery.' },
@@ -236,7 +235,7 @@ export const PROCESS_STEPS = [
 ];
 
 export const TESTIMONIALS = [
-  { name: 'Rahul Sharma', role: 'Startup Founder, Hyderabad', initials: 'RS', text: 'iDesign4U delivered our website in just 48 hours and the quality blew us away. Their team was responsive, strategic, and truly focused on our growth.', rating: 5 },
+  { name: 'Rahul Sharma', role: 'Startup Founder, Hyderabad', initials: 'RS', text: 'iDesign4U delivered our website quickly and exceeded our expectations. Their team was responsive, strategic, and truly focused on our growth.', rating: 5 },
   { name: 'Anita Verma', role: 'Marketing Head, Mumbai', initials: 'AV', text: 'Professional team with deep technical expertise. Our leads increased within weeks of the website going live. Worth every rupee.', rating: 5 },
   { name: 'Michael Ross', role: 'Business Owner, UK', initials: 'MR', text: 'One of the best website development agencies we have worked with. Highly recommended for international quality at affordable price.', rating: 5 },
   { name: 'Arjun Patel', role: 'Ecommerce Brand, Surat', initials: 'AP', text: 'Their ecommerce setup helped us dominate local search results. Order management is seamless and support is top-notch.', rating: 5 },
@@ -246,12 +245,7 @@ export const TESTIMONIALS = [
 
 export const FAQS = [
   { q: 'How long does it take to build a website?', a: 'Most business websites are completed within 48 hours to 7 days, depending on number of pages, features, and content readiness. Ecommerce stores may take up to 2 weeks.' },
-  { q: 'Is domain and hosting included in your plans?', a: 'Yes — all plans include 1 domain (.com / .in / .co.in) and 1 year cloud hosting for the initial period. Renewal applies yearly at standard rates.' },
-  { q: 'Are unlimited products uploaded by iDesign4u?', a: 'No. The Pro E-Commerce plan provides an admin panel that allows the client to add and manage products without a fixed package-level product-count restriction. A limited number of products are uploaded by iDesign4u for the initial launch/setup. Complete catalogue upload or large-scale product data entry is a separate paid service.' },
-  { q: 'Can I add more products later?', a: 'Yes. The admin panel allows the client to continue adding, editing and managing products after the website launch, subject to the practical resources of the hosting/server environment.' },
-  { q: 'Can iDesign4u upload my complete catalogue?', a: 'Yes. Bulk catalogue upload and migration are available as a separate service. Pricing is quoted based on product volume, data format, images, variants, attributes, catalogue complexity and manual processing requirements.' },
-  { q: 'Is business email included?', a: 'Professional business email mailboxes are available separately. Provider/subscription charges depend on the selected email service and number of mailboxes required.' },
-  { q: 'Are Email & SMS notifications included?', a: 'Automated transactional email, SMS and OTP services require third-party providers and usage-based services. Integration can be provided separately, while provider subscriptions, messaging and usage charges are billed separately.' },
+  { q: 'Is domain and hosting included in your plans?', a: 'Yes — all plans include a domain (.com / .in / .co.in) and cloud hosting included for the first year. Renewal applies yearly at standard rates.' },
   { q: 'Will my website be mobile responsive?', a: 'Absolutely. Every website we build works flawlessly across mobile, tablet, and desktop devices. Mobile-first design is our standard.' },
   { q: 'Do you create SEO-friendly websites?', a: 'Yes. We follow SEO-friendly structure, clean code, optimized layouts, schema markup, and proper on-page setup so your website ranks better on Google.' },
   { q: 'Can you redesign my existing website?', a: 'Yes, we can revamp outdated websites with a fresh modern design, better performance, mobile responsiveness, and improved conversion flow.' },
@@ -259,15 +253,14 @@ export const FAQS = [
   { q: 'What do you need from me to get started?', a: 'Just your business details, logo (if any), basic content, and goals. If you do not have everything ready, our team will guide you through every step.' },
   { q: 'Can I contact you directly on WhatsApp?', a: 'Yes! Tap any WhatsApp button on the site to chat with us instantly for quick quotes, demos, and consultation.' },
   { q: 'Do you offer payment plans?', a: 'Yes — we accept 50% advance and 50% on delivery for one-time plans. UPI, cards, and bank transfer all accepted via Razorpay.' },
-  { q: 'What if I am not satisfied with the design?', a: 'Every plan includes defined revisions per page. We work with you until the design perfectly matches your vision.' },
+  { q: 'What if I am not satisfied with the design?', a: 'Every plan includes multiple revisions per page. We work with you until the design perfectly matches your vision.' },
 ];
 
 export const STATS = [
-  { value: 500, suffix: '+', label: 'Websites Launched' },
+  { value: 100, suffix: '+', label: 'Websites Launched' },
   { value: 4.9, suffix: '★', label: 'Google Rating', decimals: 1 },
-  { value: 48, suffix: 'hr', label: 'Avg. Delivery' },
-  { value: 30, suffix: '+', label: 'Countries Served' },
-];
+    { value: 48, suffix: 'hr', label: 'Avg. Delivery' },
+ ];
 
 export const BUSINESS_TYPES = [
   { id: 'salon', label: 'Salon / Beauty', icon: 'Scissors' },
@@ -381,7 +374,7 @@ const BLOG_IMAGES = [
 ];
 
 export const BLOG_POSTS = [
-  { id: 1,  category: 'Affordable Websites',      title: 'Cheap Website Design in India for Small Businesses',         desc: 'Affordable website design services for startups and small businesses without compromising quality.' },
+  { id: 1,  category: 'Affordable Websites',      title: 'Cheap Website Design in Hyderabad, India for Small Businesses',         desc: 'Affordable website design services for startups and small businesses without compromising quality.' },
   { id: 2,  category: 'Small Business Websites',  title: 'Why Every Small Business Needs a Website in 2026',           desc: 'A professional website helps small businesses grow faster, build trust, and reach more customers online.' },
   { id: 3,  category: 'Startup Websites',         title: 'How to Build a Low-Cost Website in India',                   desc: 'A practical guide to launching a professional website without spending too much. Domain, hosting, design — all covered.' },
   { id: 4,  category: 'Website Design Tips',      title: '10 Web Design Trends That Convert in 2026',                  desc: 'From glass morphism to micro-animations — discover the design patterns that boost conversions and user trust.' },

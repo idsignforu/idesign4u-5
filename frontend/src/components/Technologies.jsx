@@ -9,33 +9,39 @@ export default function Technologies() {
   const row2 = [...TECHNOLOGIES.slice(half), ...TECHNOLOGIES.slice(half)];
 
   return (
-    <section className="py-16 bg-slate-50/70 border-t border-black/5 overflow-hidden relative">
-      <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 mb-8">
-        <div className="flex flex-col items-center text-center">
-          <span className="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 text-brand rounded-full px-4 py-1.5 text-xs font-bold tracking-wider uppercase">
+    <section className="section-pad bg-[#0A0118] overflow-hidden relative">
+      <div className="orb drift-1" style={{ top: '30%', right: '0%', width: 350, height: 350, background: '#581C87', opacity: 0.3 }} />
+      <div className="max-w-7xl mx-auto px-4 relative">
+        <div className="flex flex-col items-center text-center mb-12">
+          <span className="inline-flex items-center gap-2 bg-[#1E1135] border border-[#A855F7]/30 text-[#C084FC] rounded-full px-4 py-1.5 text-xs font-bold tracking-wider uppercase">
             <Layers className="w-3.5 h-3.5" />
-            Modern Tech Stack
+            Our Stack
           </span>
-          <h2 className="font-outfit font-extrabold text-2xl sm:text-3xl text-ink tracking-tight mt-3">
-            Technologies & Tools <span className="text-gradient-blue">We Master</span>
+          <h2 className="section-title mt-4 glow-text-soft">
+            Technologies <span className="glow-text">We Use</span>
           </h2>
+          <p className="mt-4 text-[#C4B5FD] max-w-2xl">
+            We build modern, fast, and scalable websites using trusted tools, frameworks, and platforms.
+          </p>
         </div>
       </div>
 
       <div
-        className="relative marquee-container overflow-hidden w-full select-none"
+        className="relative"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >
-        <div className="flex gap-4 animate-marqueeLeft w-max hover:[animation-play-state:paused] mb-4">
-          {row1.map((t, i) => (
-            <TechCard key={`r1-${i}`} tech={t} />
-          ))}
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#0A0118] to-transparent z-10" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#0A0118] to-transparent z-10" />
+
+        <div className="flex gap-5 animate-marquee w-max" style={{ animationPlayState: paused ? 'paused' : 'running' }}>
+          {row1.map((t, i) => <TechCard key={`r1-${i}`} tech={t} />)}
         </div>
-        <div className="flex gap-4 animate-marqueeRight w-max hover:[animation-play-state:paused]">
-          {row2.map((t, i) => (
-            <TechCard key={`r2-${i}`} tech={t} />
-          ))}
+        <div
+          className="mt-5 flex gap-5 animate-marquee-slow w-max"
+          style={{ animationDirection: 'reverse', animationPlayState: paused ? 'paused' : 'running' }}
+        >
+          {row2.map((t, i) => <TechCard key={`r2-${i}`} tech={t} />)}
         </div>
       </div>
     </section>
@@ -56,16 +62,12 @@ function TechCard({ tech }) {
   };
 
   return (
-    <div className="px-4 py-2.5 rounded-2xl glass-panel border border-white flex items-center gap-3 shadow-xs hover:border-brand/40 transition-colors">
-      <div className="w-6 h-6 flex items-center justify-center font-bold text-xs text-brand">
-        {stage !== 2 ? (
-          <img src={src} alt={tech.name} className="w-5 h-5 object-contain" loading="lazy" onError={onError} />
-        ) : (
-          <span>{tech.letter}</span>
-        )}
+    <div className="tech-tile">
+      <div className={`tech-logo-box ${stage === 2 ? 'fallback' : ''}`}>
+        <img src={src} alt={tech.name} loading="lazy" onError={onError} />
+        <span className="letter">{tech.letter}</span>
       </div>
-      <span className="font-sans font-semibold text-xs text-ink-soft whitespace-nowrap">{tech.name}</span>
+      <div className="text-sm font-bold text-white">{tech.name}</div>
     </div>
   );
 }
-

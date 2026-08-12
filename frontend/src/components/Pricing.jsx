@@ -1,207 +1,126 @@
 import { useState } from 'react';
-import { Check, Crown, Sparkles, ArrowRight, X, MessageCircle, Info, ShieldCheck } from 'lucide-react';
+import { Check, Crown, Sparkles, ArrowRight, X, MessageCircle } from 'lucide-react';
 import * as L from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { PRICING, CUSTOM_QUOTE_FEATURES } from '../mock';
 import { formatINR, waLink } from '../lib/utils';
-import PerspectiveGrid from './PerspectiveGrid';
 
 export default function Pricing() {
-  const [payMode, setPayMode] = useState('full'); // 'full' | 'installments'
+  const [billing, setBilling] = useState('onetime');
   const [quoteOpen, setQuoteOpen] = useState(false);
 
   return (
-    <section id="pricing" className="py-24 px-6 sm:px-12 lg:px-20 bg-white text-ink relative overflow-hidden font-sans">
-      {/* 3D Perspective Grid Background */}
-      <PerspectiveGrid gridSize={28} fadeRadius={75} />
+    <section id="pricing" className="section-pad bg-dark-radial relative overflow-hidden">
+      <div className="orb drift-1" style={{ top: '-10%', right: '-5%', width: 500, height: 500, background: '#7C3AED', opacity: 0.18 }} />
+      <div className="orb drift-2" style={{ bottom: '-15%', left: '-10%', width: 500, height: 500, background: '#A855F7', opacity: 0.15 }} />
+      <div className="absolute inset-0 bg-grid opacity-40 pointer-events-none" />
 
-      {/* Soft Ambient Mesh Glows */}
-      <div className="absolute top-10 left-10 w-[500px] h-[500px] bg-purple-400/10 rounded-full blur-[130px] pointer-events-none -z-10 animate-auroraDrift" />
-      <div className="absolute bottom-10 right-10 w-[500px] h-[500px] bg-blue-400/10 rounded-full blur-[130px] pointer-events-none -z-10 animate-auroraDrift" style={{ animationDelay: '-6s' }} />
-
-      <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
-        
-        {/* Header */}
-        <div className="flex flex-col items-center text-center mb-16">
-          <span className="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 text-brand rounded-full px-4 py-1.5 text-xs sm:text-sm font-bold tracking-wider uppercase mb-3">
-            <Sparkles className="w-4 h-4" />
-            TRANSPARENT PRICING • NO HIDDEN FEES
+      <div className="relative max-w-7xl mx-auto px-4">
+        <div className="flex flex-col items-center text-center mb-12">
+          <span className="inline-flex items-center gap-2 bg-[#1E1135] border border-[#A855F7]/30 text-[#C084FC] rounded-full px-4 py-1.5 text-xs font-bold tracking-wider uppercase">
+            <Sparkles className="w-3.5 h-3.5" />
+            Transparent Pricing
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-5 tracking-tight font-outfit text-ink">
-            Plans That Scale Your <span className="text-gradient-blue">Business</span>
+          <h2 className="section-title mt-4 max-w-3xl glow-text-soft">
+            Business Website Design Pricing{' '}
+            <span className="glow-text">(No Hidden Charges)</span>
           </h2>
-          <p className="text-muted text-base sm:text-xl font-medium max-w-3xl mx-auto leading-relaxed">
-            Domain, cloud hosting, SSL certificate & logo design included in every plan. Pay in full or split into 2-3 easy installments.
+          <p className="mt-4 text-[#C4B5FD] max-w-2xl">
+            India’s most affordable premium web design plans. Choose what fits your business — every plan packed with bonus features.
           </p>
 
-          {/* Billing Toggle */}
-          <div className="mt-10 flex items-center justify-center gap-4 bg-slate-100/80 p-2 rounded-full border border-black/5">
-            <span className={`text-sm sm:text-base font-semibold px-4 py-1.5 rounded-full transition-colors cursor-pointer ${payMode === 'full' ? 'bg-white text-ink shadow-xs' : 'text-muted'}`} onClick={() => setPayMode('full')}>
-              Pay in Full (10% Discount)
-            </span>
-            
+          <div className="mt-7 inline-flex bg-[#1E1135] rounded-full p-1 border border-[#A855F7]/25">
             <button
-              role="switch"
-              aria-checked={payMode === 'installments'}
-              onClick={() => setPayMode(payMode === 'full' ? 'installments' : 'full')}
-              className="w-16 h-9 rounded-full p-1 bg-slate-200 relative transition-all duration-300 focus:outline-none"
+              onClick={() => setBilling('onetime')}
+              className={`px-5 py-2 rounded-full text-sm font-bold transition-all ${
+                billing === 'onetime' ? 'btn-gradient text-white' : 'text-[#C4B5FD]'
+              }`}
             >
-              <div
-                className={`w-7 h-7 rounded-full bg-brand shadow-md transition-transform duration-300 ease-out ${
-                  payMode === 'installments' ? 'translate-x-7' : 'translate-x-0'
-                }`}
-              />
+              One-Time Plans
             </button>
-
-            <span className={`text-sm sm:text-base font-semibold px-4 py-1.5 rounded-full transition-colors cursor-pointer ${payMode === 'installments' ? 'bg-white text-ink shadow-xs' : 'text-muted'}`} onClick={() => setPayMode('installments')}>
-              Easy Installments (2-3 Parts)
-            </span>
+            <button
+              onClick={() => { setBilling('custom'); setQuoteOpen(true); }}
+              className={`px-5 py-2 rounded-full text-sm font-bold transition-all ${
+                billing === 'custom' ? 'btn-gradient text-white' : 'text-[#C4B5FD]'
+              }`}
+            >
+              Custom Quote
+            </button>
           </div>
         </div>
 
-        {/* 3-Column Pricing Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+        <div className="grid lg:grid-cols-3 gap-6 lg:gap-5">
           {PRICING.map((p) => {
-            const isFeatured = p.name === 'Business Website';
-
+            const popular = p.badge === 'Most Popular';
             return (
               <div
                 key={p.id}
-                className={`flex flex-col h-full relative transition-all duration-400 ${
-                  isFeatured ? 'lg:-translate-y-4 z-20' : 'z-10'
+                className={`relative rounded-3xl p-7 md:p-8 transition-all flex flex-col group ${
+                  popular
+                    ? 'shadow-[0_30px_60px_-15px_rgba(168,85,247,0.55)] lg:scale-[1.04] z-10'
+                    : 'bg-card-dark hover:border-[#A855F7]/45 card-lift'
                 }`}
+                style={popular ? {
+                  background: 'linear-gradient(160deg, #2D1B5C 0%, #1E1135 50%, #0A0118 100%)',
+                  border: '1px solid rgba(192, 132, 252, 0.5)',
+                } : {}}
               >
-                {isFeatured && (
-                  <div className="absolute -top-4 inset-x-0 flex justify-center z-30 pointer-events-none">
-                    <span className="bg-gradient-to-r from-brand to-blue-600 text-white text-xs sm:text-sm font-bold uppercase tracking-wider rounded-full px-5 py-1.5 shadow-md flex items-center gap-1.5">
-                      <Crown className="w-4 h-4" /> AI RECOMMENDED • MOST POPULAR
-                    </span>
+                {popular && <div className="absolute -top-px left-12 right-12 h-px bg-gradient-to-r from-transparent via-[#C084FC] to-transparent" />}
+                {p.badge && (
+                  <div className={`absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-[10px] font-extrabold tracking-wider uppercase flex items-center gap-1 ${
+                    popular ? 'btn-gradient text-white' : 'bg-[#A855F7]/20 text-[#C084FC] border border-[#A855F7]/40'
+                  }`}>
+                    <Crown className="w-3 h-3" /> {p.badge}
                   </div>
                 )}
-
-                <motion.div
-                  whileHover={{ y: -8 }}
-                  className={`rounded-3xl p-8 lg:p-10 flex flex-col justify-between h-full relative overflow-hidden backdrop-blur-2xl transition-all duration-400 border ${
-                    isFeatured
-                      ? 'bg-white border-brand shadow-card-blue ring-2 ring-brand/20'
-                      : 'bg-white/80 border-black/5 hover:border-brand/40 shadow-xs'
+                <div>
+                  <h3 className="text-xl font-extrabold text-white">{p.name}</h3>
+                  <p className="text-sm mt-1 text-[#C4B5FD]">{p.tagline}</p>
+                </div>
+                <div className="mt-5 flex items-end gap-2">
+                  <span className="text-sm line-through text-white/40">{formatINR(p.strike)}</span>
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded btn-gradient text-white">
+                    ₹{p.strike - p.price} OFF
+                  </span>
+                </div>
+                <div className="mt-1 flex items-baseline gap-2">
+                  <span className={`text-4xl md:text-5xl font-black ${popular ? 'glow-text' : 'text-white'}`}>{formatINR(p.price)}</span>
+                  <span className="text-xs text-[#C4B5FD]">one-time</span>
+                </div>
+                <p className="text-[11px] mt-1 text-white/40">Domain & hosting renewal applies yearly</p>
+                <ul className="mt-6 space-y-2.5 flex-1">
+                  {p.features.map((f) => (
+                    <li key={f} className="flex items-start gap-2.5 text-sm">
+                      <span className="flex-none mt-0.5 w-5 h-5 rounded-full bg-[#A855F7]/20 border border-[#A855F7]/40 flex items-center justify-center">
+                        <Check className="w-3 h-3 text-[#C084FC]" strokeWidth={3} />
+                      </span>
+                      <span className="text-[#DDD6FE]">{f}</span>
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href={waLink(`Hi, I am interested in the ${p.name} plan (${formatINR(p.price)}). Please share more details.`)}
+                  target="_blank" rel="noreferrer"
+                  className={`mt-7 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 font-bold text-sm transition-all hover:scale-[1.02] ${
+                    popular ? 'btn-gradient text-white' : 'bg-white/5 border border-[#A855F7]/40 text-white hover:bg-[#A855F7]/15'
                   }`}
                 >
-                  <div>
-                    <h3 className="text-2xl sm:text-3xl font-extrabold text-ink font-outfit">{p.name}</h3>
-                    <p className="text-muted text-sm sm:text-base mt-2 font-medium h-12">{p.tagline}</p>
-
-                    <div className="mt-6 flex items-center gap-3">
-                      <span className="text-sm line-through text-muted">{formatINR(p.strike)}</span>
-                      <span className="text-xs font-bold px-2.5 py-1 rounded bg-emerald-50 text-emerald-600 border border-emerald-200">
-                        Save ₹{p.strike - p.price}
-                      </span>
-                    </div>
-
-                    <div className="mt-2 min-h-[60px] flex items-baseline gap-2">
-                      <AnimatePresence mode="wait">
-                        {payMode === 'full' ? (
-                          <motion.div
-                            key="full"
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -10 }}
-                            transition={{ duration: 0.2 }}
-                            className="flex items-baseline gap-2"
-                          >
-                            <span className="text-4xl lg:text-5xl font-extrabold tracking-tight text-ink font-outfit">
-                              {formatINR(p.price)}
-                            </span>
-                            <span className="text-muted text-sm font-medium">one-time</span>
-                          </motion.div>
-                        ) : (
-                          <motion.div
-                            key="inst"
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -10 }}
-                            transition={{ duration: 0.2 }}
-                            className="flex items-baseline gap-2"
-                          >
-                            <span className="text-3xl lg:text-4xl font-extrabold tracking-tight text-brand font-outfit">
-                              {formatINR(Math.round(p.price / 3))}
-                            </span>
-                            <span className="text-muted text-sm font-medium">× 3 installments</span>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-
-                    <ul className="mt-8 space-y-4 flex-grow">
-                      {p.features.map((f) => (
-                        <li key={f} className="flex items-start gap-3 text-sm sm:text-base font-medium text-slate-700">
-                          <span className={`w-5 h-5 rounded-full flex items-center justify-center flex-none mt-0.5 ${
-                            isFeatured ? 'bg-blue-100 text-brand' : 'bg-slate-100 text-slate-600'
-                          }`}>
-                            <Check className="w-3.5 h-3.5 stroke-[3px]" />
-                          </span>
-                          <span>{f}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="mt-10 pt-6 border-t border-slate-100">
-                    <a
-                      href={waLink(`Hi, I am interested in the ${p.name} plan (${formatINR(p.price)}). Please share details.`)}
-                      target="_blank"
-                      rel="noreferrer"
-                      className={`w-full py-4 rounded-2xl font-bold tracking-wide text-sm sm:text-base flex items-center justify-center gap-2 transition-all ${
-                        isFeatured
-                          ? 'btn-primary-blue shadow-lg hover:scale-[1.02]'
-                          : 'bg-slate-100 hover:bg-slate-200 text-ink border border-slate-200'
-                      }`}
-                    >
-                      <span>{p.cta}</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </a>
-                  </div>
-                </motion.div>
+                  {p.cta} <ArrowRight className="w-4 h-4" />
+                </a>
+                <p className="text-[11px] text-center mt-3 text-white/40">Free demo on WhatsApp • No advance fee</p>
               </div>
             );
           })}
         </div>
 
-        {/* Commercial Scope & Product Upload Policy Note */}
-        <div className="mt-12 bg-slate-50/90 border border-slate-200/80 rounded-3xl p-6 sm:p-8 backdrop-blur-md shadow-xs">
-          <div className="flex flex-col sm:flex-row items-start gap-4">
-            <div className="w-10 h-10 rounded-2xl bg-blue-50 text-brand border border-blue-100 flex items-center justify-center flex-none mt-0.5 shadow-xs">
-              <Info className="w-5 h-5" />
-            </div>
-            <div className="space-y-3 text-xs sm:text-sm text-slate-600 leading-relaxed">
-              <p>
-                <strong className="text-ink font-semibold">Important Package Scope Note:</strong> Package pricing covers the website features and services specifically listed above. Bulk product catalogue upload, professional business email, transactional email/SMS services and other third-party provider or usage charges are billed separately where applicable. Domain & hosting renewal applies yearly.
-              </p>
-              <p>
-                <strong className="text-ink font-semibold">Product Upload Policy (Pro E-Commerce):</strong> The e-commerce website includes a full admin panel that allows the client to add and manage products without a fixed product-count restriction. A limited number of products will be uploaded by iDesign4u for the initial website launch/setup. Bulk uploading of the client's complete product catalogue is a separate paid service based on catalogue size, data format and manual processing requirements.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Custom Quote Estimator Banner */}
-        <div className="mt-12 p-8 sm:p-10 rounded-3xl bg-slate-50 border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xs">
-          <div>
-            <span className="text-xs font-bold text-brand uppercase tracking-wider">Tailored Custom Websites</span>
-            <h3 className="font-outfit font-extrabold text-2xl sm:text-3xl text-ink mt-1">Need a Custom Web Application or Portal?</h3>
-            <p className="text-sm sm:text-base text-muted mt-2 max-w-2xl">
-              Calculate a personalized quote based on your required features, pages, integrations, and timeline.
-            </p>
-          </div>
+        <div className="mt-12 text-center">
+          <p className="text-sm text-[#C4B5FD]">Need something custom or have specific requirements?</p>
           <button
             onClick={() => setQuoteOpen(true)}
-            className="px-8 py-4 rounded-2xl font-bold text-sm sm:text-base btn-primary-blue shadow-lg hover:scale-105 transition-all flex-none flex items-center gap-2"
+            className="mt-4 inline-flex items-center gap-2 bg-white/5 border border-[#A855F7]/40 text-white font-bold rounded-full px-6 py-3 text-sm hover:bg-[#A855F7]/15 transition-all"
           >
-            <Sparkles className="w-4 h-4" />
-            <span>Calculate Custom Quote</span>
+            <Sparkles className="w-4 h-4 text-[#C084FC]" /> Get a Custom Quote
           </button>
         </div>
-
       </div>
 
       {quoteOpen && <CustomQuoteModal onClose={() => setQuoteOpen(false)} />}
@@ -215,14 +134,14 @@ function CustomQuoteModal({ onClose }) {
   const [phone, setPhone] = useState('');
   const [notes, setNotes] = useState('');
 
-  const pick = (id, v) => setAnswers((a) => ({ ...a, [id]: v }));
+  const pick = (id, v) => setAnswers(a => ({ ...a, [id]: v }));
 
   const submit = () => {
-    let msg = `Hi, I want a CUSTOM QUOTE for my website project.\n\n`;
+    let msg = `Hi, I want a CUSTOM QUOTE for my website.\n\n`;
     if (name) msg += `Name: ${name}\n`;
     if (phone) msg += `Phone: ${phone}\n\n`;
     msg += `*Requirements:*\n`;
-    CUSTOM_QUOTE_FEATURES.forEach((f) => {
+    CUSTOM_QUOTE_FEATURES.forEach(f => {
       if (answers[f.id]) msg += `• ${f.label}: ${answers[f.id]}\n`;
     });
     if (notes) msg += `\nAdditional Notes:\n${notes}\n`;
@@ -232,51 +151,31 @@ function CustomQuoteModal({ onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/40 backdrop-blur-md">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-slate-100 text-ink"
-      >
-        <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 animate-fade-up" style={{ background: 'rgba(10, 1, 24, 0.85)', backdropFilter: 'blur(8px)' }}>
+      <div className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-3xl border border-[#A855F7]/40 shadow-[0_30px_80px_rgba(168,85,247,0.4)]" style={{ background: 'linear-gradient(160deg, #1E1135 0%, #0A0118 100%)' }}>
+        <div className="sticky top-0 z-10 flex items-center justify-between gap-3 px-6 py-4 border-b border-[#A855F7]/20" style={{ background: 'linear-gradient(180deg, #1E1135 0%, rgba(30,17,53,0.95) 100%)', backdropFilter: 'blur(10px)' }}>
           <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-brand">Custom Estimator</span>
-            <h3 className="font-outfit font-extrabold text-2xl text-ink">Design Your Project Quote</h3>
+            <div className="text-[10px] uppercase tracking-wider text-[#C084FC] font-extrabold">Custom Quote</div>
+            <h3 className="text-xl md:text-2xl font-extrabold text-white">Tell us about your project</h3>
           </div>
-          <button onClick={onClose} className="w-8 h-8 rounded-full bg-slate-100 text-ink hover:bg-slate-200 flex items-center justify-center">
-            <X className="w-4 h-4" />
+          <button onClick={onClose} className="w-10 h-10 rounded-full bg-[#0A0118] border border-[#A855F7]/30 text-white flex items-center justify-center hover:bg-[#A855F7]/15">
+            <X className="w-5 h-5" />
           </button>
         </div>
 
-        <div className="space-y-5">
+        <div className="p-6 space-y-5">
           <div className="grid sm:grid-cols-2 gap-3">
-            <div>
-              <label className="text-xs font-bold text-slate-700 mb-1 block">Your Name</label>
-              <input
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Rahul Sharma"
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-ink outline-none focus:border-brand"
-              />
-            </div>
-            <div>
-              <label className="text-xs font-bold text-slate-700 mb-1 block">Phone / WhatsApp</label>
-              <input
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                placeholder="+91 92814 10305"
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-ink outline-none focus:border-brand"
-              />
-            </div>
+            <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Your Name" className="bg-[#0A0118]/60 border border-[#A855F7]/25 rounded-2xl px-4 py-3 text-sm text-white placeholder:text-[#C4B5FD]/50 outline-none focus:border-[#A855F7]/70 focus:ring-2 focus:ring-[#A855F7]/30" />
+            <input value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Phone Number" className="bg-[#0A0118]/60 border border-[#A855F7]/25 rounded-2xl px-4 py-3 text-sm text-white placeholder:text-[#C4B5FD]/50 outline-none focus:border-[#A855F7]/70 focus:ring-2 focus:ring-[#A855F7]/30" />
           </div>
 
           {CUSTOM_QUOTE_FEATURES.map((f) => {
             const Icon = L[f.icon] || L.Circle;
             return (
-              <div key={f.id} className="pt-2">
+              <div key={f.id}>
                 <div className="flex items-center gap-2 mb-2">
-                  <Icon className="w-4 h-4 text-brand" />
-                  <label className="text-xs font-bold text-ink">{f.label}</label>
+                  <Icon className="w-4 h-4 text-[#C084FC]" />
+                  <label className="text-sm font-bold text-white">{f.label}</label>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {f.options.map((opt) => {
@@ -284,12 +183,11 @@ function CustomQuoteModal({ onClose }) {
                     return (
                       <button
                         key={opt}
-                        type="button"
                         onClick={() => pick(f.id, opt)}
-                        className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all border ${
+                        className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all border ${
                           active
-                            ? 'bg-brand text-white border-brand shadow-xs'
-                            : 'bg-slate-50 border-slate-200 text-slate-700 hover:border-slate-300'
+                            ? 'btn-gradient text-white border-transparent'
+                            : 'bg-[#0A0118]/60 border-[#A855F7]/25 text-[#C4B5FD] hover:border-[#A855F7]/50 hover:text-white'
                         }`}
                       >
                         {opt}
@@ -301,29 +199,19 @@ function CustomQuoteModal({ onClose }) {
             );
           })}
 
-          <div className="pt-2">
-            <label className="text-xs font-bold text-ink block mb-1">Additional Project Details</label>
-            <textarea
-              value={notes}
-              onChange={(e) => setNotes(e.target.value)}
-              rows={3}
-              placeholder="Tell us about your business, reference websites, or special requirements..."
-              className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-ink outline-none focus:border-brand resize-none"
-            />
+          <div>
+            <label className="text-sm font-bold text-white">Anything else we should know?</label>
+            <textarea value={notes} onChange={(e) => setNotes(e.target.value)} rows={3} placeholder="Specific features, integrations, design preferences, references..." className="mt-2 w-full bg-[#0A0118]/60 border border-[#A855F7]/25 rounded-2xl px-4 py-3 text-sm text-white placeholder:text-[#C4B5FD]/50 outline-none focus:border-[#A855F7]/70 focus:ring-2 focus:ring-[#A855F7]/30 resize-none" />
           </div>
         </div>
 
-        <div className="mt-8 pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-muted">Directly connects to our WhatsApp team for an instant quote.</p>
-          <button
-            onClick={submit}
-            className="w-full sm:w-auto px-6 py-3 rounded-xl font-bold text-sm btn-primary-blue flex items-center justify-center gap-2 shadow-lg"
-          >
-            <MessageCircle className="w-4 h-4" />
-            <span>Request WhatsApp Quote</span>
+        <div className="sticky bottom-0 px-6 py-4 border-t border-[#A855F7]/20 flex flex-col sm:flex-row items-center justify-between gap-3" style={{ background: 'linear-gradient(0deg, #1E1135 0%, rgba(30,17,53,0.95) 100%)' }}>
+          <p className="text-[11px] text-[#C4B5FD]/70">We’ll send your requirements to WhatsApp for a personalized quote.</p>
+          <button onClick={submit} className="w-full sm:w-auto inline-flex items-center justify-center gap-2 btn-gradient text-white font-bold rounded-full px-6 py-3 text-sm">
+            <MessageCircle className="w-4 h-4" /> Send to WhatsApp
           </button>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }

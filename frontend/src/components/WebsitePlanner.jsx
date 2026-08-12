@@ -2,7 +2,6 @@ import { useState } from 'react';
 import * as L from 'lucide-react';
 import { BUSINESS_TYPES, PRIMARY_GOALS, PAGE_OPTIONS, TIMELINES, PRICING } from '../mock';
 import { formatINR, waLink } from '../lib/utils';
-import WhatsappIcon from './WhatsappIcon';
 
 export default function WebsitePlanner() {
   const [step, setStep] = useState(1);
@@ -273,7 +272,7 @@ Please share more details.`;
       </div>
       <div className="mt-7 flex flex-wrap gap-3">
         <a href={waLink(msg)} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 btn-gradient text-white font-bold rounded-full px-6 py-3 text-sm">
-          <WhatsappIcon className="w-4 h-4" /> Connect on WhatsApp
+          <L.MessageCircle className="w-4 h-4" /> Connect on WhatsApp
         </a>
         <a href="#contact" className="inline-flex items-center gap-2 bg-white text-[#0A0118] font-bold rounded-full px-6 py-3 text-sm hover:bg-[#E9D5FF]">
           <L.Phone className="w-4 h-4" /> Speak with Us

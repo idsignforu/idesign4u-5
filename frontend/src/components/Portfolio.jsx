@@ -1,181 +1,176 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ExternalLink, ArrowRight, Lock, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
-import { motion } from 'framer-motion';
 import { PORTFOLIO } from '../mock';
-import { Link } from 'react-router-dom';
-import PerspectiveGrid from './PerspectiveGrid';
 
-export default function Portfolio({ limit = null }) {
-  const [filter, setFilter] = useState('All');
+const usePageSize = () => {
+  const get = () => (typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches ? 4 : 10);
+  const [size, setSize] = useState(get);
+  useEffect(() => {
+    const mql = window.matchMedia('(max-width: 767px)');
+    const onChange = () => setSize(get());
+    mql.addEventListener?.('change', onChange);
+    return () => mql.removeEventListener?.('change', onChange);
+  }, []);
+  return size;
+};
+
+export default function Portfolio() {
   const [page, setPage] = useState(1);
-
-  const categories = ['All', 'Business', 'E-Commerce', 'Landing Page', 'Healthcare', 'Real Estate'];
-
-  const filtered = filter === 'All' ? PORTFOLIO : PORTFOLIO.filter(p => p.category === filter);
-  const displayItems = limit ? filtered.slice(0, limit) : filtered;
-
-  const PAGE_SIZE = 6;
-  const totalPages = Math.max(1, Math.ceil(displayItems.length / PAGE_SIZE));
+  const PAGE_SIZE = usePageSize();
+  const totalPages = Math.max(1, Math.ceil(PORTFOLIO.length / PAGE_SIZE));
+  // Clamp current page when PAGE_SIZE changes (e.g., resize)
+  useEffect(() => { if (page > totalPages) setPage(1); }, [totalPages, page]);
   const pageStart = (page - 1) * PAGE_SIZE;
-  const visible = limit ? displayItems : displayItems.slice(pageStart, pageStart + PAGE_SIZE);
+  const visible = PORTFOLIO.slice(pageStart, pageStart + PAGE_SIZE);
+
+  const goPage = (n) => {
+    setPage(n);
+    const el = document.getElementById('portfolio');
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   return (
-    <section className="py-20 md:py-28 bg-white relative overflow-hidden">
-      {/* 3D Perspective Grid Background */}
-      <PerspectiveGrid gridSize={28} fadeRadius={75} />
+    <section id="portfolio" className="section-pad bg-[#0A0118] relative">
+      <div className="orb drift-2" style={{ top: '5%', left: '50%', width: 500, height: 500, background: '#7C3AED', opacity: 0.12, transform: 'translateX(-50%)' }} />
+      <div className="absolute inset-0 bg-grid opacity-25 pointer-events-none" />
 
-      {/* Ambient Spotlight */}
-      <div className="absolute top-1/4 right-10 w-[500px] h-[500px] bg-aura-sky rounded-full blur-[140px] pointer-events-none -z-10" />
-
-      <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12">
-        <div className="flex flex-col items-center text-center mb-12">
-          <span className="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 text-brand rounded-full px-4 py-1.5 text-xs font-bold tracking-wider uppercase">
+      <div className="relative max-w-7xl mx-auto px-4">
+        <div className="flex flex-col items-center text-center mb-14">
+          <span className="inline-flex items-center gap-2 bg-[#1E1135] border border-[#A855F7]/30 text-[#C084FC] rounded-full px-4 py-1.5 text-xs font-bold tracking-wider uppercase">
             <Sparkles className="w-3.5 h-3.5" />
-            Our Portfolio
+            Our Work
           </span>
-          <h2 className="font-outfit font-extrabold text-3xl sm:text-4xl lg:text-5xl text-ink tracking-tight mt-4">
-            Recent Client <span className="text-gradient-blue">Websites</span>
+          <h2 className="section-title mt-4 max-w-3xl glow-text-soft">
+            Selected <span className="glow-text">Work</span>
           </h2>
-          <p className="font-sans text-base text-muted max-w-2xl mt-4 leading-relaxed">
-            Real websites delivered to real businesses in 48 hours — performance optimized, mobile responsive, and built to convert.
+          <p className="mt-4 text-[#C4B5FD] max-w-2xl">
+            Each project is crafted with obsessive attention to detail — performance optimized, pixel perfect, and built to convert.
           </p>
 
-          {/* Category Filters */}
-          {!limit && (
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
-              {categories.map((c) => (
-                <button
-                  key={c}
-                  onClick={() => { setFilter(c); setPage(1); }}
-                  className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
-                    filter === c
-                      ? 'bg-brand text-white shadow-xs'
-                      : 'bg-black/5 text-muted hover:text-ink hover:bg-black/10'
-                  }`}
-                >
-                  {c}
-                </button>
-              ))}
-            </div>
-          )}
+          <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-2xl">
+            {[
+              { v: '7+', l: 'Live Projects' },
+              { v: '100%', l: 'Client Satisfaction' },
+              { v: '5★', l: 'Avg. Rating' },
+              { v: '30d', l: 'Avg. Delivery' },
+            ].map((s) => (
+              <div key={s.l} className="bg-[#1E1135]/70 border border-[#A855F7]/25 rounded-2xl px-3 py-2.5">
+                <div className="text-lg md:text-xl font-extrabold glow-text">{s.v}</div>
+                <div className="text-[10px] md:text-xs text-[#C4B5FD]">{s.l}</div>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Portfolio Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {visible.map((p, idx) => (
-            <motion.a
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-5">
+          {visible.map((p) => (
+            <a
               key={p.id}
               href={p.url}
               target="_blank"
               rel="noreferrer"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.08 }}
-              whileHover={{ y: -6 }}
-              className="group glass-panel rounded-3xl overflow-hidden border border-white/80 shadow-xs hover:shadow-card-blue transition-all flex flex-col justify-between"
+              className="group relative card-lift bg-card-dark rounded-3xl overflow-hidden block"
             >
-              {/* Browser Window Frame */}
-              <div className="p-3 bg-slate-50 border-b border-black/5">
-                <div className="h-6 bg-white rounded-lg px-2.5 flex items-center justify-between border border-black/5 text-[11px] text-muted">
-                  <div className="flex items-center gap-1">
-                    <span className="w-2 h-2 rounded-full bg-rose-400" />
-                    <span className="w-2 h-2 rounded-full bg-amber-400" />
-                    <span className="w-2 h-2 rounded-full bg-emerald-400" />
+              {/* Device monitor mockup — shows site like a real desktop monitor with stand */}
+              <div className="relative px-3 pt-4 md:px-4 md:pt-5 pb-2">
+                <div className="device-monitor relative">
+                  <div className="device-bar">
+                    <span className="dot" style={{ background: '#FF5F57' }} />
+                    <span className="dot" style={{ background: '#FFBD2E' }} />
+                    <span className="dot" style={{ background: '#28C940' }} />
+                    <div className="url-pill">
+                      <Lock className="w-2.5 h-2.5" /> {p.domain}
+                    </div>
                   </div>
-                  <div className="flex items-center gap-1 font-mono text-[10px] text-muted">
-                    <Lock className="w-2.5 h-2.5 text-emerald-500" /> {p.domain}
-                  </div>
-                  <div className="w-2" />
-                </div>
-                <div className="mt-3 aspect-[16/10] rounded-xl overflow-hidden relative">
-                  <img
-                    src={p.image}
-                    alt={p.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                    <span className="px-3 py-1 bg-white/90 backdrop-blur-md rounded-full text-xs font-bold text-ink flex items-center gap-1.5 shadow-md">
-                      <span>Visit Live Site</span>
-                      <ExternalLink className="w-3.5 h-3.5 text-brand" />
-                    </span>
+                  <div className="device-screen relative aspect-[4/3] overflow-hidden">
+                    <img
+                      src={p.image}
+                      alt={p.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A0118]/60 via-transparent to-transparent" />
+                    <div className="absolute bottom-2 left-2 text-3xl font-black text-white/20">
+                      {p.no}
+                    </div>
                   </div>
                 </div>
+                <div className="device-stand" />
+                <div className="device-base" />
               </div>
-
-              {/* Card Footer Content */}
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-brand bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-100">
-                    {p.category}
-                  </span>
-                  <span className="text-xs font-mono font-bold text-slate-400">{p.no}</span>
-                </div>
-                <h3 className="font-outfit font-extrabold text-xl text-ink group-hover:text-brand transition-colors">
-                  {p.title}
-                </h3>
-                <p className="font-sans text-xs text-muted leading-relaxed mt-1.5 line-clamp-2">
-                  {p.desc}
-                </p>
-                <div className="mt-4 flex flex-wrap gap-1.5">
-                  {p.tags.slice(0, 3).map((t) => (
-                    <span key={t} className="text-[10px] font-semibold bg-slate-100 text-ink-soft rounded-md px-2 py-0.5">
-                      {t}
-                    </span>
+              {/* Content */}
+              <div className="px-3 md:px-5 pt-2 pb-3 md:pb-5">
+                <div className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#C084FC]">{p.category}</div>
+                <h3 className="mt-2 text-sm md:text-base font-extrabold text-white group-hover:text-[#E9D5FF] transition-colors leading-tight">{p.title}</h3>
+                <p className="hidden mt-2 text-xs text-[#C4B5FD] leading-relaxed line-clamp-3">{p.desc}</p>
+                <div className="mt-3 hidden md:flex flex-wrap gap-1.5">
+                  {p.tags.slice(0, 3).map(t => (
+                    <span key={t} className="text-[10px] font-bold bg-[#A855F7]/15 border border-[#A855F7]/30 text-[#C084FC] rounded-full px-2 py-0.5">{t}</span>
                   ))}
                 </div>
+                <div className="mt-3 inline-flex items-center gap-1.5 text-xs font-bold text-[#C084FC] group-hover:text-[#E9D5FF] transition-colors">
+                  View <ExternalLink className="w-3 h-3" />
+                </div>
               </div>
-            </motion.a>
+            </a>
           ))}
         </div>
 
-        {/* Pagination Control (Full Page Mode) */}
-        {!limit && totalPages > 1 && (
-          <div className="mt-12 flex items-center justify-center gap-2">
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div className="mt-10 flex items-center justify-center gap-2">
             <button
-              onClick={() => setPage((p) => Math.max(1, p - 1))}
+              onClick={() => goPage(Math.max(1, page - 1))}
               disabled={page === 1}
-              className="w-9 h-9 rounded-full bg-slate-100 text-ink flex items-center justify-center disabled:opacity-40 disabled:cursor-not-allowed hover:bg-brand hover:text-white transition-colors"
+              data-testid="portfolio-prev"
+              className="w-10 h-10 rounded-full bg-[#1E1135] border border-[#A855F7]/25 text-white flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed hover:bg-[#A855F7]/15 transition-all"
+              aria-label="Previous page"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
-            {Array.from({ length: totalPages }).map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setPage(i + 1)}
-                className={`w-9 h-9 rounded-full text-xs font-bold transition-all ${
-                  page === i + 1
-                    ? 'bg-brand text-white shadow-md'
-                    : 'bg-slate-100 text-muted hover:text-ink'
-                }`}
-              >
-                {i + 1}
-              </button>
-            ))}
+            {Array.from({ length: totalPages }).map((_, i) => {
+              const n = i + 1;
+              const isActive = n === page;
+              return (
+                <button
+                  key={n}
+                  onClick={() => goPage(n)}
+                  data-testid={`portfolio-page-${n}`}
+                  className={`min-w-10 h-10 px-3 rounded-full text-sm font-bold transition-all ${
+                    isActive
+                      ? 'btn-gradient text-white shadow-[0_8px_20px_rgba(168,85,247,0.4)]'
+                      : 'bg-[#1E1135] border border-[#A855F7]/25 text-[#C4B5FD] hover:text-white hover:border-[#A855F7]/50'
+                  }`}
+                >
+                  {n}
+                </button>
+              );
+            })}
             <button
-              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+              onClick={() => goPage(Math.min(totalPages, page + 1))}
               disabled={page === totalPages}
-              className="w-9 h-9 rounded-full bg-slate-100 text-ink flex items-center justify-center disabled:opacity-40 disabled:cursor-not-allowed hover:bg-brand hover:text-white transition-colors"
+              data-testid="portfolio-next"
+              className="w-10 h-10 rounded-full bg-[#1E1135] border border-[#A855F7]/25 text-white flex items-center justify-center disabled:opacity-30 disabled:cursor-not-allowed hover:bg-[#A855F7]/15 transition-all"
+              aria-label="Next page"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>
         )}
 
-        {limit && limit < PORTFOLIO.length && (
-          <div className="mt-12 text-center">
-            <Link
-              to="/portfolio"
-              className="btn-primary-blue px-7 py-3.5 rounded-2xl font-bold text-sm inline-flex items-center gap-2 shadow-lg"
-            >
-              <span>View Full Portfolio</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        )}
+        <div className="mt-14 text-center">
+          <p className="text-sm text-[#C4B5FD] uppercase tracking-[0.2em] font-bold mb-3">Ready to join our portfolio?</p>
+          <h3 className="text-2xl md:text-4xl font-extrabold glow-text-soft">
+            Let’s build something <span className="glow-text">extraordinary</span>
+          </h3>
+          <a
+            href="#contact"
+            className="mt-6 inline-flex items-center gap-2 btn-gradient text-white font-bold rounded-full px-7 py-4"
+          >
+            Start Your Project <ArrowRight className="w-4 h-4" />
+          </a>
+        </div>
       </div>
     </section>
   );
 }
-
