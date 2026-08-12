@@ -26,6 +26,33 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  // Auto-scroll horizontal navbar container when active item changes (mobile/tablet)
+  useEffect(() => {
+    const container = navScrollRef.current;
+    if (!container) return;
+    const activeBtn = container.querySelector(`[data-testid="nav-link-${active}"]`);
+    if (!activeBtn) return;
+
+    const containerRect = container.getBoundingClientRect();
+    const btnRect = activeBtn.getBoundingClientRect();
+
+    const padding = 16;
+    const isOutLeft = btnRect.left < containerRect.left + padding;
+    const isOutRight = btnRect.right > containerRect.right - padding;
+
+    if (isOutLeft || isOutRight) {
+      const scrollTarget =
+        container.scrollLeft +
+        (btnRect.left - containerRect.left) -
+        (containerRect.width / 2 - btnRect.width / 2);
+
+      container.scrollTo({
+        left: Math.max(0, scrollTarget),
+        behavior: 'smooth',
+      });
+    }
+  }, [active]);
+
   // Detect if nav can scroll horizontally (mobile only) to show ">" hint
   useEffect(() => {
     const el = navScrollRef.current;
